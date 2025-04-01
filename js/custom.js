@@ -85,3 +85,33 @@ $(document).ready(function() {
     $this.hide();
   });
 });
+
+
+
+// 页脚年份自动更新
+document.addEventListener('DOMContentLoaded', function() {
+  var copyrightYear = document.getElementById('copyright-year');
+  if (copyrightYear) {
+    copyrightYear.textContent = new Date().getFullYear();
+  }
+});
+
+// 计算网站运行时间
+function runTime() {
+  var startTime = new Date("2025-03-30"); // 替换为您的网站创建日期
+  var currentTime = new Date();
+  var runTime = currentTime - startTime;
+  var days = Math.floor(runTime / (24 * 3600 * 1000));
+  var hours = Math.floor((runTime % (24 * 3600 * 1000)) / (3600 * 1000));
+  var minutes = Math.floor((runTime % (3600 * 1000)) / (60 * 1000));
+  var seconds = Math.floor((runTime % (60 * 1000)) / 1000);
+  
+  document.getElementById("website-runtime").innerHTML = days + "天" + hours + "时" + minutes + "分" + seconds + "秒";
+}
+
+// 页面加载完成后执行
+document.addEventListener('DOMContentLoaded', function() {
+  runTime();
+  // 每秒更新一次
+  setInterval(runTime, 1000);
+});
