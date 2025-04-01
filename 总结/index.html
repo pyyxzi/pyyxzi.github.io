@@ -19,15 +19,15 @@
   <meta name="author" content="马孟起">
   <meta name="keywords" content="">
   
-    <meta name="description" content="0           文章总数                                                                0           文章总字数">
+    <meta name="description" content="📄           0           文章总数                                                     📝           0           文章总字数">
 <meta property="og:type" content="website">
 <meta property="og:title" content="博客总结">
 <meta property="og:url" content="http://kjuan.xyz/%E6%80%BB%E7%BB%93/">
 <meta property="og:site_name" content="鹤冲天">
-<meta property="og:description" content="0           文章总数                                                                0           文章总字数">
+<meta property="og:description" content="📄           0           文章总数                                                     📝           0           文章总字数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-01T06:01:47.709Z">
+<meta property="article:modified_time" content="2025-04-01T08:25:42.123Z">
 <meta property="article:author" content="马孟起">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -293,7 +293,7 @@
     <div class="col-md-3 col-sm-6 mb-4">
       <div class="card stat-card">
         <div class="card-body">
-          <div class="stat-icon"><i class="fas fa-file-alt"></i></div>
+          <div class="stat-icon">📄</div>
           <h3 id="post-count">0</h3>
           <p>文章总数</p>
         </div>
@@ -302,7 +302,7 @@
     <div class="col-md-3 col-sm-6 mb-4">
       <div class="card stat-card">
         <div class="card-body">
-          <div class="stat-icon"><i class="fas fa-font"></i></div>
+          <div class="stat-icon">📝</div>
           <h3 id="word-count">0</h3>
           <p>文章总字数</p>
         </div>
@@ -311,7 +311,7 @@
     <div class="col-md-3 col-sm-6 mb-4">
       <div class="card stat-card">
         <div class="card-body">
-          <div class="stat-icon"><i class="fas fa-folder"></i></div>
+          <div class="stat-icon">📁</div>
           <h3 id="category-count">0</h3>
           <p>分类总数</p>
         </div>
@@ -320,7 +320,7 @@
     <div class="col-md-3 col-sm-6 mb-4">
       <div class="card stat-card">
         <div class="card-body">
-          <div class="stat-icon"><i class="fas fa-tags"></i></div>
+          <div class="stat-icon">🏷️</div>
           <h3 id="tag-count">0</h3>
           <p>标签总数</p>
         </div>
@@ -328,29 +328,33 @@
     </div>
   </div>
 
-  <!-- 图表区域 -->
+  <!-- 统计图表区域 (使用简单的DIV实现，不依赖外部库) -->
   <div class="row mt-4 mb-4">
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h4><i class="fas fa-chart-pie mr-2"></i>文章发布统计</h4>
+          <h4>📊 文章发布趋势</h4>
           <div class="btn-group btn-group-sm">
             <button class="btn btn-outline-primary active" id="month-btn">月度</button>
             <button class="btn btn-outline-primary" id="year-btn">年度</button>
           </div>
         </div>
         <div class="card-body">
-          <canvas id="post-chart" height="250"></canvas>
+          <div id="post-chart" class="simple-chart">
+            <!-- 这里将用简单的div生成图表 -->
+          </div>
         </div>
       </div>
     </div>
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-header">
-          <h4><i class="fas fa-chart-bar mr-2"></i>分类文章数量</h4>
+          <h4>📊 分类文章数量</h4>
         </div>
         <div class="card-body">
-          <canvas id="category-chart" height="250"></canvas>
+          <div id="category-chart" class="simple-chart">
+            <!-- 这里将用简单的div生成图表 -->
+          </div>
         </div>
       </div>
     </div>
@@ -361,14 +365,12 @@
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h4><i class="fas fa-folder-open mr-2"></i>分类统计</h4>
+          <h4>📂 分类统计</h4>
           <span class="badge badge-pill badge-primary" id="category-total">0 个分类</span>
         </div>
         <div class="card-body" id="category-list">
           <div class="text-center py-4">
-            <div class="spinner-border text-primary" role="status">
-              <span class="sr-only">加载中...</span>
-            </div>
+            <div class="loading-text">加载中...</div>
           </div>
         </div>
       </div>
@@ -376,14 +378,12 @@
     <div class="col-md-6 mb-4">
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-          <h4><i class="fas fa-tags mr-2"></i>标签统计</h4>
+          <h4>🏷️ 标签统计</h4>
           <span class="badge badge-pill badge-info" id="tag-total">0 个标签</span>
         </div>
         <div class="card-body" id="tag-list">
           <div class="text-center py-4">
-            <div class="spinner-border text-info" role="status">
-              <span class="sr-only">加载中...</span>
-            </div>
+            <div class="loading-text">加载中...</div>
           </div>
         </div>
       </div>
@@ -394,14 +394,12 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header">
-          <h4><i class="fas fa-fire mr-2"></i>最热门文章</h4>
+          <h4>🔥 最新文章</h4>
         </div>
         <div class="card-body p-0">
           <div class="list-group list-group-flush" id="popular-posts">
             <div class="text-center py-4">
-              <div class="spinner-border text-danger" role="status">
-                <span class="sr-only">加载中...</span>
-              </div>
+              <div class="loading-text">加载中...</div>
             </div>
           </div>
         </div>
@@ -491,17 +489,118 @@
     color: #6c757d;
     font-size: 0.85rem;
   }
+  
+  .loading-text {
+    color: #6c757d;
+  }
+  
+  /* 简单图表样式 */
+  .simple-chart {
+    height: 250px;
+    display: flex;
+    align-items: flex-end;
+    padding-top: 20px;
+  }
+  
+  .chart-bar {
+    flex: 1;
+    background-color: #007bff;
+    margin: 0 3px;
+    border-radius: 3px 3px 0 0;
+    position: relative;
+    min-height: 1px;
+    transition: height 0.5s;
+  }
+  
+  .chart-bar-label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform: rotate(-45deg);
+    transform-origin: right bottom;
+  }
+  
+  .chart-bar-value {
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .progress-bar {
+    transition: width 0.5s;
+  }
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
 <script>
-  // 获取博客数据
-  fetch('/content.json')
-    .then(response => response.json())
-    .then(data => {
-      // 移除加载动画
-      document.querySelectorAll('.spinner-border').forEach(spinner => {
-        spinner.parentElement.innerHTML = '';
+  // 避免使用外部库，改用内置fetch API
+  document.addEventListener('DOMContentLoaded', function() {
+    // 缓存机制，减少重复请求
+    const CACHE_KEY = 'blog_stats_cache';
+    const CACHE_TIME = 3600000; // 1小时缓存
+    
+    // 尝试从缓存获取数据
+    function getCache() {
+      try {
+        const cache = localStorage.getItem(CACHE_KEY);
+        if (cache) {
+          const { data, timestamp } = JSON.parse(cache);
+          if (Date.now() - timestamp < CACHE_TIME) {
+            return data;
+          }
+        }
+      } catch (e) {
+        console.error('读取缓存失败', e);
+      }
+      return null;
+    }
+    
+    // 设置缓存
+    function setCache(data) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          data,
+          timestamp: Date.now()
+        }));
+      } catch (e) {
+        console.error('设置缓存失败', e);
+      }
+    }
+    
+    // 先检查是否有缓存
+    const cachedData = getCache();
+    if (cachedData) {
+      processData(cachedData);
+      return;
+    }
+    
+    // 无缓存，从服务器获取
+    fetch('/content.json')
+      .then(response => response.json())
+      .then(data => {
+        // 缓存数据
+        setCache(data);
+        processData(data);
+      })
+      .catch(error => {
+        console.error('获取博客数据失败:', error);
+        document.querySelector('.container').innerHTML = '<div class="alert alert-danger">获取博客数据失败，请确保已安装 hexo-generator-json-content 插件</div>';
+      });
+    
+    function processData(data) {
+      // 移除加载提示
+      document.querySelectorAll('.loading-text').forEach(element => {
+        element.parentElement.innerHTML = '';
       });
       
       // 文章总数
@@ -618,7 +717,7 @@
         }
       });
       
-      // 创建文章发布统计图表
+      // 创建文章发布统计图表 - 使用简单的DIV实现
       const monthLabels = [];
       const monthData = [];
       
@@ -629,7 +728,7 @@
         const year = month.getFullYear();
         const monthNum = month.getMonth() + 1;
         const monthKey = `${year}-${monthNum}`;
-        const monthName = `${year}年${monthNum}月`;
+        const monthName = `${year}/${monthNum}`;
         
         monthLabels.push(monthName);
         monthData.push(postsByMonth[monthKey] || 0);
@@ -638,102 +737,32 @@
       const yearLabels = Object.keys(postsByYear).sort();
       const yearData = yearLabels.map(year => postsByYear[year]);
       
-      const ctx = document.getElementById('post-chart').getContext('2d');
-      const postChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: monthLabels,
-          datasets: [{
-            label: '文章数',
-            data: monthData,
-            backgroundColor: 'rgba(0, 123, 255, 0.2)',
-            borderColor: 'rgba(0, 123, 255, 1)',
-            borderWidth: 2,
-            pointBackgroundColor: 'rgba(0, 123, 255, 1)',
-            tension: 0.3,
-            fill: true
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              display: false
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                precision: 0
-              }
-            }
-          }
-        }
-      });
+      // 创建简单的柱状图
+      renderSimpleBarChart('post-chart', monthLabels, monthData);
       
       // 切换年度/月度按钮事件
       document.getElementById('month-btn').addEventListener('click', function() {
         this.classList.add('active');
         document.getElementById('year-btn').classList.remove('active');
-        
-        postChart.data.labels = monthLabels;
-        postChart.data.datasets[0].data = monthData;
-        postChart.update();
+        renderSimpleBarChart('post-chart', monthLabels, monthData);
       });
       
       document.getElementById('year-btn').addEventListener('click', function() {
         this.classList.add('active');
         document.getElementById('month-btn').classList.remove('active');
-        
-        postChart.data.labels = yearLabels;
-        postChart.data.datasets[0].data = yearData;
-        postChart.update();
+        renderSimpleBarChart('post-chart', yearLabels, yearData);
       });
       
       // 创建分类统计图表
-      const topCategories = sortedCategories.slice(0, 6);
+      const topCategories = sortedCategories.slice(0, 8);
       const categoryChartLabels = topCategories.map(item => item[0]);
       const categoryChartData = topCategories.map(item => item[1]);
       
-      const categoryChartCtx = document.getElementById('category-chart').getContext('2d');
-      new Chart(categoryChartCtx, {
-        type: 'bar',
-        data: {
-          labels: categoryChartLabels,
-          datasets: [{
-            label: '文章数',
-            data: categoryChartData,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.7)',
-              'rgba(54, 162, 235, 0.7)',
-              'rgba(255, 206, 86, 0.7)',
-              'rgba(75, 192, 192, 0.7)',
-              'rgba(153, 102, 255, 0.7)',
-              'rgba(255, 159, 64, 0.7)'
-            ],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              display: false
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true,
-              ticks: {
-                precision: 0
-              }
-            }
-          }
-        }
-      });
+      renderSimpleBarChart('category-chart', categoryChartLabels, categoryChartData, [
+        '#FF9999', '#99CCFF', '#FFCC99', '#99FF99', '#CC99FF', '#FFFF99', '#FF99CC', '#99FFCC'
+      ]);
       
-      // 热门文章展示（这里以日期最新的5篇作为演示，实际应该使用访问量）
+      // 热门文章展示（这里以日期最新的5篇作为演示）
       const popularPosts = [...data.posts].sort((a, b) => {
         return new Date(b.date) - new Date(a.date);
       }).slice(0, 5);
@@ -755,11 +784,48 @@
         `;
         popularPostsContainer.appendChild(postItem);
       });
-    })
-    .catch(error => {
-      console.error('获取博客数据失败:', error);
-      document.querySelector('.container').innerHTML = '<div class="alert alert-danger">获取博客数据失败，请确保已安装 hexo-generator-json-content 插件</div>';
-    });
+    }
+    
+    // 渲染简单的柱状图，不依赖外部库
+    function renderSimpleBarChart(containerId, labels, data, colors) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      
+      // 找出最大值
+      const maxValue = Math.max(...data);
+      
+      // 创建柱状图
+      data.forEach((value, index) => {
+        const bar = document.createElement('div');
+        bar.className = 'chart-bar';
+        
+        // 根据数值设置高度百分比
+        const heightPercent = maxValue > 0 ? (value / maxValue * 100) : 0;
+        bar.style.height = heightPercent + '%';
+        
+        // 如果有自定义颜色，则使用
+        if (colors && colors[index]) {
+          bar.style.backgroundColor = colors[index];
+        }
+        
+        // 添加标签
+        const label = document.createElement('div');
+        label.className = 'chart-bar-label';
+        label.textContent = labels[index];
+        bar.appendChild(label);
+        
+        // 添加数值
+        if (value > 0) {
+          const valueDiv = document.createElement('div');
+          valueDiv.className = 'chart-bar-value';
+          valueDiv.textContent = value;
+          bar.appendChild(valueDiv);
+        }
+        
+        container.appendChild(bar);
+      });
+    }
+  });
 </script>
 
   
