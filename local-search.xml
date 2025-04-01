@@ -4,63 +4,25 @@
   
   
   <entry>
-    <title>try</title>
-    <link href="/2025/03/29/try/"/>
-    <url>/2025/03/29/try/</url>
+    <title>Hexo使用指南</title>
+    <link href="/2025/04/01/Hexo%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    <url>/2025/04/01/Hexo%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
     
-    <content type="html"><![CDATA[<h1 id="春江花月夜"><a href="#春江花月夜" class="headerlink" title="春江花月夜"></a>春江花月夜</h1><p>春江潮水连海平，海上明月共潮生。<br>滟滟随波千万里，何处春江无月明。<br>江流宛转绕芳甸，月照花林皆似霰。<br>空里流霜不觉飞，汀上白沙看不见。<br>江天一色无纤尘，皎皎空中孤月轮。<br>江畔何人初见月？江月何年初照人？<br>人生代代无穷已，江月年年望相似。<br>不知江月待何人，但见长江送流水。</p><h1 id="标题1"><a href="#标题1" class="headerlink" title="标题1"></a>标题1</h1><h2 id="标题2"><a href="#标题2" class="headerlink" title="标题2"></a>标题2</h2><h3 id="标题3"><a href="#标题3" class="headerlink" title="标题3"></a>标题3</h3><h4 id="标题4"><a href="#标题4" class="headerlink" title="标题4"></a>标题4</h4><blockquote><p>引用</p></blockquote><p>有序: </p><ol><li>马你干嘛哎呦</li><li>化</li><li>腾</li></ol><p>无序：</p><ul><li>洛</li><li>克</li><li>李</li></ul><p>代码块：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span>&#123;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>表格</p><table><thead><tr><th align="center">姓名</th><th align="center">id</th></tr></thead><tbody><tr><td align="center">曼施坦因</td><td align="center">6</td></tr><tr><td align="center">斯大林</td><td align="center">3</td></tr></tbody></table><p>:靠左表示左对齐，两侧都有表示居中对齐</p><p><a href="https://www.bilibili.com" target="_blank">百度</a></p><hr><p>横线</p><hr><p>网址<br><a href="https://www.baidu.com/">百度</a></p><p><img src="https://w.wallhaven.cc/full/qz/wallhaven-qz7pz7.png" alt="关羽"></p><p><em>斜体</em><br><strong>加粗</strong></p><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-built_in">int</span> <span class="hljs-title">main</span>()</span>&#123;<br>   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p><u>下划线</u></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="1-markdown"><a href="#1-markdown" class="headerlink" title="1. markdown"></a>1. markdown</h1><p>‘#’代指标题，越多’#’表示该标题层级越低</p><br><p>有序排列:</p><ol><li>一身转战三千里</li><li>一剑曾当百万师</li><li>汉军奋迅如霹雳</li><li>虏骑崩腾畏蒺藜</li></ol><br><p>无序排列:</p><ul><li>家家楼上簇神仙</li><li>争看鹤冲天</li></ul><br><p>代码块:</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">function</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">int</span> a;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><br><p>表格:</p><table><thead><tr><th align="center">姓名</th><th align="center">编号</th><th align="center">军衔</th></tr></thead><tbody><tr><td align="center">曼施坦因</td><td align="center">0001</td><td align="center">元帅</td></tr><tr><td align="center">斯大林</td><td align="center">0002</td><td align="center">大元帅</td></tr></tbody></table><br><hr><p>三个’-‘代表横线</p><br><p>网址:[名称]’(统一资源定位符)’<br>图片:![名称]’(图片网站或者图片本地地址)’<br>如:<a href="https://www.bilibili.com/">B站</a><br><img src="https://img2.baidu.com/it/u=606296352,1669070318&fm=253&fmt=auto&app=120&f=JPEG?w=268&h=239" alt="pic"><br><br></p><p>*包裹表示斜体，**包裹表示加粗<br><em>黄金百战穿金甲</em><br><strong>不破楼兰终不还</strong></p><h1 id="2-Tag插件"><a href="#2-Tag插件" class="headerlink" title="2. Tag插件"></a>2. Tag插件</h1><p><img src="/img/test1.png" alt="指南"><br><br></p><p>行便签,用&lt;’p’ class&#x3D;’’&gt;&lt;&#x2F;&gt;</p><p class="note note-success">标签测试</p><br><p>行内标签，用&lt;’span’ class&#x3D;””&gt;&lt;&#x2F;&gt;<br><span class="label label-primary">Label</span><br><br></p><p>折叠块，用’{‘% fold info @标题 %’}’开头  ‘{‘% endfold %’}’结尾</p>    <div class="fold">      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-b8b217cb" role="button" aria-expanded="false" aria-controls="collapse-b8b217cb">        <div class="fold-arrow">▶</div>三五七言      </div>      <div class="fold-collapse collapse" id="collapse-b8b217cb">        <div class="fold-content">          <p>入我相思门，知我相思苦<br>长相思兮长相忆，短相思兮无穷极</p>        </div>      </div>    </div><br><p>按钮  ‘&lt;’a class&#x3D;”btn” href&#x3D;”url” title&#x3D;”描述”‘&gt;’按钮名称’&lt;’&#x2F;a’&gt;’<br><a class="btn" href="https://hexo.fluid-dev.com/docs/guide/#tag-%E6%8F%92%E4%BB%B6" title="描述">点击</a></p><p>组图<br>‘{‘% gi 总图数 每行数 %’}’<br>  ![]’()<br>  ![]’()<br>‘{‘% endgi %’}’</p><h1 id="3-front-matter语法"><a href="#3-front-matter语法" class="headerlink" title="3. front-matter语法"></a>3. front-matter语法</h1><p>layout： 布局<br>title:  标题<br>data:创建日期<br>updated：更新日期<br>tags：标签<br>categories：分类<br>author：作者<br>excerpt：文章摘要<br>layout: post  # 可选：post, page, draft<br>sticky: 100   # 文章置顶，数字越大优先级越高<br>comments: true  # 是否开启评论<br>toc: true       # 是否显示目录<br>index_img  #文章描述图片<br>banner_img: &#x2F;images&#x2F;banner.jpg  # 文章顶部大图<br>banner_img_height: 70  # 图片高度（百分比）<br>banner_mask_alpha: 0.3  # 图片遮罩透明度</p>]]></content>
     
     
     <categories>
       
-      <category>娱乐</category>
+      <category>学习笔记</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>测试</tag>
-      
-      <tag>test1</tag>
+      <tag>hexo</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>标题测试</title>
-    <link href="/2025/03/29/1/"/>
-    <url>/2025/03/29/1/</url>
-    
-    <content type="html"><![CDATA[<p>welcome!</p><!-- 便签 --><p class="note note-success">标签测试</p><!-- 行内便签 --><p><span class="label label-primary">Label</span></p>    <div class="fold">      <div class="fold-title fold-primary collapsed" data-toggle="collapse" href="#collapse-b5714680" role="button" aria-expanded="false" aria-controls="collapse-b5714680">        <div class="fold-arrow">▶</div>title      </div>      <div class="fold-collapse collapse" id="collapse-b5714680">        <div class="fold-content">          <p>需要折叠的一段内容，支持 markdown</p>        </div>      </div>    </div><p>            <input type="checkbox"  checked="checked">腾讯          </p><a class="btn" href="https://www.baidu.com/"  title="点击" target="_blank">按钮测试</a><p><a class="btn" href="https://www.baidu.com/" title="title">text</a></p><div class="group-image-container"><div class="group-image-row"><div class="group-image-wrap"><img src="/pic/bg.png"></div><div class="group-image-wrap"><img src="/pic/bg1.png"></div></div></div><!--PC版--><!-- <div id="SOHUCS" sid="123"></div><script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script><script type="text/javascript">window.changyan.api.config({appid: 'cyxPaGdbE',conf: 'prod_f69f45d74c2da46a2bc03eef409e8ced'});</script> -->]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>举世皆惊</tag>
-      
-      <tag>天下无双</tag>
-      
-      <tag>威震天下</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>123</title>
-    <link href="/2025/03/29/kjuan/"/>
-    <url>/2025/03/29/kjuan/</url>
-    
-    <content type="html"><![CDATA[<p>天若有情天亦老，人间正道是沧桑axy</p>]]></content>
-    
-    
     
   </entry>
   

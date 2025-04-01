@@ -27,7 +27,7 @@
 <meta property="og:description" content="📄           0           文章总数                                                     📝           0           文章总字数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-01T08:25:42.123Z">
+<meta property="article:modified_time" content="2025-04-01T13:30:17.617Z">
 <meta property="article:author" content="马孟起">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -547,13 +547,17 @@
   document.addEventListener('DOMContentLoaded', function() {
     // 缓存机制，减少重复请求
     const CACHE_KEY = 'blog_stats_cache';
-    const CACHE_TIME = 3600000; // 1小时缓存
+    const CACHE_TIME = 300000; // 修改为5分钟缓存
+    
+    // 添加强制刷新功能
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceRefresh = urlParams.get('refresh') === 'true';
     
     // 尝试从缓存获取数据
     function getCache() {
       try {
         const cache = localStorage.getItem(CACHE_KEY);
-        if (cache) {
+        if (cache && !forceRefresh) {
           const { data, timestamp } = JSON.parse(cache);
           if (Date.now() - timestamp < CACHE_TIME) {
             return data;
@@ -576,6 +580,21 @@
         console.error('设置缓存失败', e);
       }
     }
+    
+    // 添加刷新按钮
+    const container = document.querySelector('.container');
+    const refreshButton = document.createElement('div');
+    refreshButton.className = 'text-center mb-4';
+    refreshButton.innerHTML = `
+      <button class="btn btn-outline-primary" id="refresh-stats">
+        <i class="fas fa-sync-alt"></i> 刷新统计数据
+      </button>
+    `;
+    container.insertBefore(refreshButton, container.firstChild);
+    
+    document.getElementById('refresh-stats').addEventListener('click', function() {
+      window.location.href = window.location.pathname + '?refresh=true';
+    });
     
     // 先检查是否有缓存
     const cachedData = getCache();
