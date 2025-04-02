@@ -19,27 +19,36 @@
   <meta name="author" content="k卷">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍如何使用markdown记笔记">
+    <meta name="description" content="介绍串的基本概念，存储结构，匹配算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="笔记记录方法">
-<meta property="og:url" content="http://kjuan.xyz/2025/04/01/Hexo%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+<meta property="og:title" content="数据结构-串">
+<meta property="og:url" content="http://kjuan.xyz/2025/04/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%B8%B2/">
 <meta property="og:site_name" content="鹤冲天">
-<meta property="og:description" content="介绍如何使用markdown记笔记">
+<meta property="og:description" content="介绍串的基本概念，存储结构，匹配算法">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://img2.baidu.com/it/u=606296352,1669070318&fm=253&fmt=auto&app=120&f=JPEG?w=268&h=239">
-<meta property="og:image" content="http://kjuan.xyz/img/test1.png">
-<meta property="article:published_time" content="2025-04-01T12:00:17.000Z">
-<meta property="article:modified_time" content="2025-04-01T16:17:47.840Z">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/1.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/2.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/3.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/4.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/5.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/6.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/7.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/8.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/9.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/10.png">
+<meta property="og:image" content="http://kjuan.xyz/pic/%E4%B8%B2/11.png">
+<meta property="article:published_time" content="2025-04-02T12:04:02.000Z">
+<meta property="article:modified_time" content="2025-04-02T16:47:01.726Z">
 <meta property="article:author" content="马孟起">
-<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="串">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://img2.baidu.com/it/u=606296352,1669070318&fm=253&fmt=auto&app=120&f=JPEG?w=268&h=239">
+<meta name="twitter:image" content="http://kjuan.xyz/pic/%E4%B8%B2/1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>笔记记录方法 - 鹤冲天</title>
+  <title>数据结构-串 - 鹤冲天</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -265,7 +274,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="笔记记录方法"></span>
+            <span id="subtitle" data-typed-text="数据结构-串"></span>
           
         </div>
 
@@ -281,8 +290,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-01 20:00" pubdate>
-          April 1, 2025 pm
+        <time datetime="2025-04-02 20:04" pubdate>
+          April 2, 2025 pm
         </time>
       </span>
     
@@ -293,7 +302,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          373 words
+          1.3k words
         
       </span>
     
@@ -304,7 +313,7 @@
         
         
         
-          4 mins
+          11 mins
         
       </span>
     
@@ -350,86 +359,198 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">笔记记录方法</h1>
+            <h1 id="seo-header">数据结构-串</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="1-markdown"><a href="#1-markdown" class="headerlink" title="1. markdown"></a>1. markdown</h1><p>‘#’代指标题，越多’#’表示该标题层级越低</p>
-<br>
-
-<p>有序排列:</p>
-<ol>
-<li>一身转战三千里</li>
-<li>一剑曾当百万师</li>
-<li>汉军奋迅如霹雳</li>
-<li>虏骑崩腾畏蒺藜</li>
-</ol>
-<br>
-
-<p>无序排列:</p>
-<ul>
-<li>家家楼上簇神仙</li>
-<li>争看鹤冲天</li>
-</ul>
-<br>
-
-<p>代码块:</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">function</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">int</span> a;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-<br>
-
-<p>表格:</p>
-<table>
+                <h2 id="📚-串的定义"><a href="#📚-串的定义" class="headerlink" title="📚 串的定义"></a>📚 串的定义</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><table>
 <thead>
 <tr>
-<th align="center">姓名</th>
-<th align="center">编号</th>
-<th align="center">军衔</th>
+<th>术语</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">曼施坦因</td>
-<td align="center">0001</td>
-<td align="center">元帅</td>
+<td><strong>字符串</strong></td>
+<td>由0个或多个字符组成的有限序列，又称<strong>串</strong></td>
 </tr>
 <tr>
-<td align="center">斯大林</td>
-<td align="center">0002</td>
-<td align="center">大元帅</td>
+<td><strong>空串</strong></td>
+<td>长度为0的字符串（仍是合法子串）</td>
+</tr>
+<tr>
+<td><strong>主串</strong></td>
+<td>包含其他子串的字符串</td>
+</tr>
+<tr>
+<td><strong>子串</strong></td>
+<td>主串中任意连续字符组成的子序列</td>
 </tr>
 </tbody></table>
-<br>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">S = <span class="hljs-string">&quot;IPhone 16 pro max&quot;</span><br>S1 = <span class="hljs-string">&quot;pro&quot;</span>  <span class="hljs-comment"># S1是S的子串，空串也是S的子串</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="✨-核心特性"><a href="#✨-核心特性" class="headerlink" title="✨ 核心特性"></a>✨ 核心特性</h3><ol>
+<li>字符串是特殊的线性表，数据对象限定为<strong>字符集</strong>（如ASCII、Unicode）</li>
+<li>基本操作通常以<strong>子串</strong>为操作对象（非单个字符）</li>
+</ol>
 <hr>
-<p>三个’-‘代表横线</p>
-<br>
+<h3 id="🎯-位置说明"><a href="#🎯-位置说明" class="headerlink" title="🎯 位置说明"></a>🎯 位置说明</h3><table>
+<thead>
+<tr>
+<th>概念</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>字符位置</strong></td>
+<td>字符在串中的序号（<strong>从1开始</strong>）</td>
+<td><code>&#39;h&#39;</code>在<code>S</code>中的位置为3</td>
+</tr>
+<tr>
+<td><strong>子串位置</strong></td>
+<td>子串首字符在主串中的位置</td>
+<td><code>&quot;one&quot;</code>在<code>S</code>中的位置为4</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🗄️-串的存储结构"><a href="#🗄️-串的存储结构" class="headerlink" title="🗄️ 串的存储结构"></a>🗄️ 串的存储结构</h2><h3 id="顺序存储"><a href="#顺序存储" class="headerlink" title="顺序存储"></a>顺序存储</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> maxlen 20</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br>    <span class="hljs-type">char</span> ch[maxlen];<br>    <span class="hljs-type">int</span> length;<br>&#125; SString;<br></code></pre></td></tr></table></figure>
 
-<p>网址:[名称]’(统一资源定位符)’<br>图片:![名称]’(图片网站或者图片本地地址)’<br>如:<a target="_blank" rel="noopener" href="https://www.bilibili.com/">B站</a><br><img src="https://img2.baidu.com/it/u=606296352,1669070318&fm=253&fmt=auto&app=120&f=JPEG?w=268&h=239" srcset="/img/loading.gif" lazyload alt="pic"><br><br></p>
-<p>*包裹表示斜体，**包裹表示加粗<br><em>黄金百战穿金甲</em><br><strong>不破楼兰终不还</strong></p>
-<h1 id="2-Tag插件"><a href="#2-Tag插件" class="headerlink" title="2. Tag插件"></a>2. Tag插件</h1><p><img src="/img/test1.png" srcset="/img/loading.gif" lazyload alt="指南"><br><br></p>
-<p>行便签,用&lt;’p’ class&#x3D;’’&gt;&lt;&#x2F;&gt;</p>
-<p class="note note-success">标签测试</p>
-<br>
+<p><img src="/pic/%E4%B8%B2/1.png" srcset="/img/loading.gif" lazyload alt="顺序存储示意图"><br><img src="/pic/%E4%B8%B2/2.png" srcset="/img/loading.gif" lazyload alt="存储方案"></p>
+<h3 id="链式存储"><a href="#链式存储" class="headerlink" title="链式存储"></a>链式存储</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StringNode</span> &#123;</span><br>    <span class="hljs-type">char</span> ch;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">StringNode</span> *<span class="hljs-title">next</span>;</span><br>&#125; StringNode, *String;<br></code></pre></td></tr></table></figure>
 
-<p>行内标签，用&lt;’span’ class&#x3D;””&gt;&lt;&#x2F;&gt;<br><span class="label label-primary">Label</span><br><br></p>
-<p>折叠块，用’{‘% fold info @标题 %’}’开头  ‘{‘% endfold %’}’结尾</p>
+<p><img src="/pic/%E4%B8%B2/3.png" srcset="/img/loading.gif" lazyload alt="链式存储示意图"></p>
+<h3 id="🔍-存储方案对比"><a href="#🔍-存储方案对比" class="headerlink" title="🔍 存储方案对比"></a>🔍 存储方案对比</h3><p><span class="note note-primary">顺序存储</span></p>
+<ul>
+<li>优点：支持随机存取，存储密度大</li>
+<li>缺点：扩展容量不方便，插入删除不方便</li>
+</ul>
+<p><span class="note note-success">链式存储</span></p>
+<ul>
+<li>优点：扩展容量分布，插入删除方便</li>
+<li>缺点：不支持随机存取，指针占额外空间，存储密度小</li>
+</ul>
+<hr>
+<h2 id="🛠️-串的基本操作"><a href="#🛠️-串的基本操作" class="headerlink" title="🛠️ 串的基本操作"></a>🛠️ 串的基本操作</h2><h3 id="核心操作流程图"><a href="#核心操作流程图" class="headerlink" title="核心操作流程图"></a>核心操作流程图</h3><p><img src="/pic/%E4%B8%B2/4.png" srcset="/img/loading.gif" lazyload alt="基本操作流程图"></p>
+<h3 id="1-求子串操作"><a href="#1-求子串操作" class="headerlink" title="1. 求子串操作"></a>1. 求子串操作</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">SString <span class="hljs-title function_">SubString</span><span class="hljs-params">(SString S, <span class="hljs-type">int</span> pos, <span class="hljs-type">int</span> len)</span> &#123;<br>    SString sub;<br>    <span class="hljs-keyword">if</span> (pos + len - <span class="hljs-number">1</span> &gt; S.length) &#123;<br>        <span class="hljs-comment">// 错误处理</span><br>    &#125;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; len; i++) &#123;<br>        sub.ch[i] = S.ch[pos + i - <span class="hljs-number">1</span>];<br>    &#125;<br>    sub.length = len;<br>    <span class="hljs-keyword">return</span> sub;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-    <div class="fold">
-      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-b8b217cb" role="button" aria-expanded="false" aria-controls="collapse-b8b217cb">
-        <div class="fold-arrow">▶</div>三五七言
-      </div>
-      <div class="fold-collapse collapse" id="collapse-b8b217cb">
-        <div class="fold-content">
-          <p>入我相思门，知我相思苦<br>长相思兮长相忆，短相思兮无穷极</p>
-        </div>
-      </div>
-    </div>
-<br>
+<p><img src="/pic/%E4%B8%B2/5.png" srcset="/img/loading.gif" lazyload alt="求子串"></p>
+<h3 id="2-字符串比较"><a href="#2-字符串比较" class="headerlink" title="2. 字符串比较"></a>2. 字符串比较</h3><p><img src="/pic/%E4%B8%B2/6.png" srcset="/img/loading.gif" lazyload alt="比较流程图"></p>
+<h3 id="3-模式匹配"><a href="#3-模式匹配" class="headerlink" title="3. 模式匹配"></a>3. 模式匹配</h3><p><img src="/pic/%E4%B8%B2/7.png" srcset="/img/loading.gif" lazyload alt="模式匹配示意图"></p>
+<hr>
+<h2 id="🔍-模式匹配算法"><a href="#🔍-模式匹配算法" class="headerlink" title="🔍 模式匹配算法"></a>🔍 模式匹配算法</h2><blockquote>
+<p>子串：主串的一部分，一定能在主串中找到<br>模式串：不一定能在主串中找到</p>
+</blockquote>
+<h3 id="朴素模式匹配"><a href="#朴素模式匹配" class="headerlink" title="朴素模式匹配"></a>朴素模式匹配</h3><p><strong>算法思想</strong></p>
+<ul>
+<li>主串S长度为n，模式串T长度为m</li>
+<li>需要比较的次数为n-m+1</li>
+<li>每次比较，i指向S，j指向T，i++，j++，依次匹配</li>
+<li>如果遇到不匹配的字符<ul>
+<li>S需要从下一个位置开始，即i&#x3D;i-j+2</li>
+<li>T需要从头开始，即j&#x3D;0</li>
+</ul>
+</li>
+<li>如果j&gt;T.length，则表示匹配成功，返回i-T.length</li>
+</ul>
+<p><strong>时间复杂度分析</strong></p>
+<ul>
+<li>最佳情况，O(m)，第一次遍历成功</li>
+<li>最差情况，O((n-m+1)*m)，每次都在最后一个字符匹配失败</li>
+<li>平均情况，O(m+n)</li>
+<li>空间复杂度，O(1)，只用固定数量的指针变量</li>
+</ul>
+<p><img src="/pic/%E4%B8%B2/8.png" srcset="/img/loading.gif" lazyload><br><img src="/pic/%E4%B8%B2/9.png" srcset="/img/loading.gif" lazyload alt="平均情况时间复杂度解释"></p>
+<hr>
+<h3 id="🚀-KMP算法"><a href="#🚀-KMP算法" class="headerlink" title="🚀 KMP算法"></a>🚀 KMP算法</h3><p class="note note-primary">
+由D.E.Knuth, J.H.Morris, V.R.Pratt提出，在朴素匹配算法的基础上改进</p>
 
-<p>按钮  ‘&lt;’a class&#x3D;”btn” href&#x3D;”url” title&#x3D;”描述”‘&gt;’按钮名称’&lt;’&#x2F;a’&gt;’<br><a class="btn" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/#tag-%E6%8F%92%E4%BB%B6" title="描述">点击</a></p>
-<p>组图<br>‘{‘% gi 总图数 每行数 %’}’<br>  ![]’()<br>  ![]’()<br>‘{‘% endgi %’}’</p>
-<h1 id="3-front-matter语法"><a href="#3-front-matter语法" class="headerlink" title="3. front-matter语法"></a>3. front-matter语法</h1><p>layout： 布局<br>title:  标题<br>data:创建日期<br>updated：更新日期<br>tags：标签<br>categories：分类<br>author：作者<br>excerpt：文章摘要<br>layout: post  # 可选：post, page, draft<br>sticky: 100   # 文章置顶，数字越大优先级越高<br>comments: true  # 是否开启评论<br>toc: true       # 是否显示目录<br>index_img  #文章描述图片<br>banner_img: &#x2F;images&#x2F;banner.jpg  # 文章顶部大图<br>banner_img_height: 70  # 图片高度（百分比）<br>banner_mask_alpha: 0.3  # 图片遮罩透明度</p>
+<p><strong>思路：</strong></p>
+<ul>
+<li><p>主串S，模式串T</p>
+</li>
+<li><p>当匹配到i个位置，发现不匹配</p>
+</li>
+<li><p>但主串S前面i-1个位置是匹配的，我们可以知道其具体内容</p>
+</li>
+<li><p>就可以选择某个位置进行下一次匹配，避免无效匹配</p>
+</li>
+<li><p>这个具体位置怎么表示，就是要探讨的内容</p>
+</li>
+<li><p>可以发现，到第i个位置不匹配，但主串前i-1个字符是已知的</p>
+</li>
+<li><p>主串不需要回溯，只需要模式串选择合适的位置j继续匹配</p>
+</li>
+<li><p>模式串指针和主串无关，只和自身有关</p>
+</li>
+<li><p>其值刚好可以用一个数组表示，表示为next[]</p>
+</li>
+</ul>
+<p><strong>next数组构建</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">get_next</span><span class="hljs-params">(String T, <span class="hljs-type">int</span> next[])</span> &#123;<br>    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, j = <span class="hljs-number">0</span>;<br>    next[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (i &lt; T.length) &#123;<br>        <span class="hljs-keyword">if</span> (j == <span class="hljs-number">0</span> || T.ch[i] == T.ch[j]) &#123;<br>            ++i; ++j;<br>            next[i] = j;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            j = next[j];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>KMP算法的实现</strong><br><img src="/pic/%E4%B8%B2/10.png" srcset="/img/loading.gif" lazyload alt="KMP算法的实现"></p>
+<p><strong>模式串’abaabc’的next数组</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>j</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>next[j]</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<ul>
+<li>对于模式串’abaabc’</li>
+<li>若第一个位置不匹配，令j&#x3D;0， i++,j++再匹配</li>
+<li>第二个，令j&#x3D;1， i不变，继续匹配</li>
+<li>第三个，令j&#x3D;1， i不变，继续匹配</li>
+<li>第四个，令j&#x3D;2， i不变，继续匹配</li>
+<li>第五个，令j&#x3D;2， i不变，继续匹配</li>
+<li>第六个，令j&#x3D;3， i不变，继续匹配</li>
+</ul>
+<p><img src="/pic/%E4%B8%B2/11.png" srcset="/img/loading.gif" lazyload alt="next数组"></p>
+<hr>
+<h3 id="⚡-KMP优化（nextval数组）"><a href="#⚡-KMP优化（nextval数组）" class="headerlink" title="⚡ KMP优化（nextval数组）"></a>⚡ KMP优化（nextval数组）</h3><p><strong>优化策略</strong>：</p>
+<ul>
+<li><p>利用next数组匹配模式串时，当第i个字符不匹配，主串位置不变，模式串回到next[i]位置，此方法仅考虑前i-1个字符匹配情况</p>
+</li>
+<li><p>实际上，第i个字符不匹配，我们可以确定第i个字符一定不是m[i]，如果模式串回到next[i]位置，而该位置恰好为m[i]，这个匹配显然是多余的</p>
+</li>
+<li><p>在next数组的基础上，推出nextval数组，降低时间复杂度</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">get_nextval</span><span class="hljs-params">(String T, <span class="hljs-type">int</span> nextval[])</span> &#123;<br>    <span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, j = <span class="hljs-number">0</span>;<br>    nextval[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (i &lt; T.length) &#123;<br>        <span class="hljs-keyword">if</span> (j == <span class="hljs-number">0</span> || T.ch[i] == T.ch[j]) &#123;<br>            ++i; ++j;<br>            <span class="hljs-keyword">if</span> (T.ch[i] != T.ch[j]) <br>                nextval[i] = j;<br>            <span class="hljs-keyword">else</span> <br>                nextval[i] = nextval[j];<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            j = nextval[j];<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>算法思路</strong></p>
+<ul>
+<li>nextval[1]一定为0</li>
+<li>当T.ch[j]&#x3D;&#x3D;T.ch[next[j]]，说明当前匹配是多余的，就算回到next[i]位置，依然不匹配</li>
+<li>nextval[j]&#x3D;nextval[next[j]]</li>
+<li>其余让nextval[j]&#x3D;next[j]</li>
+</ul>
+<hr>
+<h2 id="📌-关键总结"><a href="#📌-关键总结" class="headerlink" title="📌 关键总结"></a>📌 关键总结</h2><ol>
+<li><strong>存储选择</strong>：顺序存储适合静态场景，链式存储适合动态场景</li>
+<li><strong>模式匹配</strong>：KMP通过预处理将时间复杂度优化到O(n+m)</li>
+<li><strong>算法优化</strong>：nextval数组避免重复无效匹配</li>
+<li><strong>实践要点</strong>：注意字符串终止符’\0’的处理和长度校验</li>
+</ol>
 
                 
               </div>
@@ -448,8 +569,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
   
 
       </span>
@@ -463,7 +591,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/hexo/" class="print-no-link">#hexo</a>
+        <a href="/tags/%E4%B8%B2/" class="print-no-link">#串</a>
       
     </div>
   
@@ -475,8 +603,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>笔记记录方法</div>
-      <div>http://kjuan.xyz/2025/04/01/Hexo使用指南/</div>
+      <div>数据结构-串</div>
+      <div>http://kjuan.xyz/2025/04/02/数据结构-串/</div>
     </div>
     <div class="license-meta">
       
@@ -488,7 +616,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 1, 2025</div>
+          <div>April 2, 2025</div>
         </div>
       
       
@@ -524,8 +652,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/03/29/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2025/04/01/%E7%AC%94%E8%AE%B0%E8%AE%B0%E5%BD%95%E6%96%B9%E6%B3%95/" title="笔记记录方法">
+                        <span class="hidden-mobile">笔记记录方法</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -540,7 +668,7 @@
   
     <article id="comments" lazyload>
       
-  <div id="SOHUCS" sid='http://kjuan.xyz/2025/04/01/Hexo%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'></div>
+  <div id="SOHUCS" sid='http://kjuan.xyz/2025/04/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%B8%B2/'></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#SOHUCS', function() {
       Fluid.utils.createScript("https://changyan.sohu.com/upload/changyan.js", function() {
