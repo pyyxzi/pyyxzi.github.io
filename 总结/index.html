@@ -27,7 +27,7 @@
 <meta property="og:description" content="📄           0           文章总数                                                     📝           0           文章总字数">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-01T13:30:17.617Z">
+<meta property="article:modified_time" content="2025-04-03T06:42:41.991Z">
 <meta property="article:author" content="马孟起">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -794,7 +794,8 @@
         const formattedDate = `${postDate.getFullYear()}-${postDate.getMonth()+1}-${postDate.getDate()}`;
         
         const postItem = document.createElement('a');
-        postItem.href = post.path;
+        // 修复文章链接路径，确保以斜杠开头
+        postItem.href = post.path.startsWith('/') ? post.path : '/' + post.path;
         postItem.className = 'list-group-item list-group-item-action popular-post-item';
         postItem.innerHTML = `
           <span class="popular-post-rank">${index+1}</span>
