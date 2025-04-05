@@ -16,27 +16,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="kjuan">
+  <meta name="author" content="马孟起">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍图像处理流程">
+    <meta name="description" content="介绍卡特兰数(Catalan number)的定义与应用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="细胞图像处理">
-<meta property="og:url" content="http://kjuan.xyz/2025/04/04/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+<meta property="og:title" content="Catalan number">
+<meta property="og:url" content="http://kjuan.xyz/2025/04/05/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/">
 <meta property="og:site_name" content="鹤冲天">
-<meta property="og:description" content="介绍图像处理流程">
+<meta property="og:description" content="介绍卡特兰数(Catalan number)的定义与应用">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-04-04T03:12:28.000Z">
-<meta property="article:modified_time" content="2025-04-04T07:35:45.611Z">
+<meta property="article:published_time" content="2025-04-05T12:07:45.000Z">
+<meta property="article:modified_time" content="2025-04-05T14:28:13.728Z">
 <meta property="article:author" content="马孟起">
-<meta property="article:tag" content="图像处理">
+<meta property="article:tag" content="卡特兰数">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>细胞图像处理 - 鹤冲天</title>
+  <title>Catalan number - 鹤冲天</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -262,7 +262,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="细胞图像处理"></span>
+            <span id="subtitle" data-typed-text="Catalan number"></span>
           
         </div>
 
@@ -272,14 +272,14 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        kjuan
+        马孟起
       </span>
     
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-04 11:12" pubdate>
-          April 4, 2025 am
+        <time datetime="2025-04-05 20:07" pubdate>
+          April 5, 2025 pm
         </time>
       </span>
     
@@ -290,7 +290,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k words
+          2.9k words
         
       </span>
     
@@ -301,7 +301,7 @@
         
         
         
-          12 mins
+          25 mins
         
       </span>
     
@@ -347,92 +347,178 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">细胞图像处理</h1>
+            <h1 id="seo-header">Catalan number</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="细胞分割方法分析"><a href="#细胞分割方法分析" class="headerlink" title="细胞分割方法分析"></a>细胞分割方法分析</h1><h1 id="细胞分割方法的数学原理与实现"><a href="#细胞分割方法的数学原理与实现" class="headerlink" title="细胞分割方法的数学原理与实现"></a>细胞分割方法的数学原理与实现</h1><h2 id="1-颜色空间转换-RGB-→-LAB"><a href="#1-颜色空间转换-RGB-→-LAB" class="headerlink" title="1. 颜色空间转换 (RGB → LAB)"></a>1. 颜色空间转换 (RGB → LAB)</h2><p>首先将RGB图像转换为LAB颜色空间：</p>
-<blockquote>
-<p>将RGB图像转换为LAB颜色空间。LAB空间特别适合处理H&amp;E染色的病理切片，因为它能更好地分离不同染色成分</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">lab_image = color.rgb2lab(<span class="hljs-variable language_">self</span>.original_image)<br></code></pre></td></tr></table></figure>
-
-<h3 id="RGB到LAB的转换过程："><a href="#RGB到LAB的转换过程：" class="headerlink" title="RGB到LAB的转换过程："></a>RGB到LAB的转换过程：</h3><h4 id="步骤1-RGB到XYZ的转换"><a href="#步骤1-RGB到XYZ的转换" class="headerlink" title="步骤1: RGB到XYZ的转换"></a>步骤1: RGB到XYZ的转换</h4><p>对于标准RGB(sRGB)空间，首先需要进行伽马校正，将非线性RGB转换为线性RGB：</p>
-<p>$$R_{linear} &#x3D; \begin{cases}<br>\frac{R_{sRGB}}{12.92}, &amp; \text{if } R_{sRGB} \leq 0.04045 \<br>\left(\frac{R_{sRGB} + 0.055}{1.055}\right)^{2.4}, &amp; \text{if } R_{sRGB} &gt; 0.04045<br>\end{cases}$$</p>
-<p>同理计算$G_{linear}$和$B_{linear}$。</p>
-<p>然后使用标准转换矩阵将线性RGB转换为XYZ：</p>
-<p>$$\begin{bmatrix} X \ Y \ Z \end{bmatrix} &#x3D; \begin{bmatrix}<br>0.4124564 &amp; 0.3575761 &amp; 0.1804375 \<br>0.2126729 &amp; 0.7151522 &amp; 0.0721750 \<br>0.0193339 &amp; 0.1191920 &amp; 0.9503041<br>\end{bmatrix} \begin{bmatrix} R_{linear} \ G_{linear} \ B_{linear} \end{bmatrix}$$</p>
-<h4 id="步骤2-XYZ到LAB的转换"><a href="#步骤2-XYZ到LAB的转换" class="headerlink" title="步骤2: XYZ到LAB的转换"></a>步骤2: XYZ到LAB的转换</h4><p>使用D65白点参考值$(X_n, Y_n, Z_n) &#x3D; (0.95047, 1.00000, 1.08883)$：</p>
-<p>首先计算中间变量：</p>
-<p>$$x &#x3D; \frac{X}{X_n}, y &#x3D; \frac{Y}{Y_n}, z &#x3D; \frac{Z}{Z_n}$$</p>
-<p>然后应用非线性变换：</p>
-<p>$$f(t) &#x3D; \begin{cases}<br>t^{\frac{1}{3}}, &amp; \text{if } t &gt; \left(\frac{6}{29}\right)^3 \<br>\frac{1}{3}\left(\frac{29}{6}\right)^2 t + \frac{4}{29}, &amp; \text{if } t \leq \left(\frac{6}{29}\right)^3<br>\end{cases}$$</p>
-<p>最后计算LAB值：</p>
-<p>$$L &#x3D; 116 \cdot f(y) - 16$$<br>$$a &#x3D; 500 \cdot [f(x) - f(y)]$$<br>$$b &#x3D; 200 \cdot [f(y) - f(z)]$$</p>
-<p>其中L的范围是[0, 100]，a和b的范围通常是[-128, 127]。</p>
-<h2 id="2-细胞核分割"><a href="#2-细胞核分割" class="headerlink" title="2. 细胞核分割"></a>2. 细胞核分割</h2><h3 id="提取LAB空间的通道："><a href="#提取LAB空间的通道：" class="headerlink" title="提取LAB空间的通道："></a>提取LAB空间的通道：</h3><blockquote>
-<p>该通道对H&amp;E染色的细胞核有较高的敏感度</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">l_channel = lab_image[:,:,<span class="hljs-number">0</span>]  <span class="hljs-comment"># 亮度通道</span><br>a_channel = lab_image[:,:,<span class="hljs-number">1</span>]  <span class="hljs-comment"># 从绿到红的通道</span><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>使用Otsu自适应阈值法自动确定最佳分割阈值</p>
-</blockquote>
-<h3 id="Otsu阈值法的数学原理："><a href="#Otsu阈值法的数学原理：" class="headerlink" title="Otsu阈值法的数学原理："></a>Otsu阈值法的数学原理：</h3><p>Otsu方法通过最大化类间方差来寻找最佳阈值。对于灰度图像，假设像素值范围为[0, L-1]：</p>
-<ol>
-<li><p>计算图像的归一化直方图 $p_i &#x3D; \frac{n_i}{N}$，其中$n_i$是灰度值为i的像素数，N是总像素数。</p>
+                <h1 id="卡特兰数-Catalan-Number"><a href="#卡特兰数-Catalan-Number" class="headerlink" title="卡特兰数(Catalan Number)"></a>卡特兰数(Catalan Number)</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>卡特兰数(Catalan number)是组合数学中一个常出现于各种计数问题中的数列,他以中国蒙古族数学家明安图和比利时数学家欧仁·查理·卡特兰的名字命名</p>
+<h3 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a>基本性质</h3><ul>
+<li><strong>前几项</strong>：1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786…</li>
+<li><strong>递推公式</strong>：<br>$$C_n &#x3D; C_0 C_{n-1} + C_1 C_{n-2} + \cdots + C_{n-1} C_0$$</li>
+<li><strong>通项公式</strong>：<br>$$C_n &#x3D; \frac{1}{n+1} \binom{2n}{n} &#x3D; \frac{(2n)!}{(n+1)!n!}$$</li>
+</ul>
+<h2 id="数学推理"><a href="#数学推理" class="headerlink" title="数学推理"></a>数学推理</h2><p>我们以最经典的栈问题举例</p>
+<p>问题描述：n个元素的进栈序列为1,2,3,4…..n，则有多少种出栈序列</p>
+<h3 id="思路1"><a href="#思路1" class="headerlink" title="思路1"></a><strong>思路1</strong></h3><ol>
+<li><p>将进栈表示为+1，出栈表示为-1，每次要出栈栈内元素要不为空，即每个-1前面必然有一个+1与之对应，出栈序列的前缀和必然大于等于0，且+1的数量等于-1的数量</p>
 </li>
-<li><p>对于每个可能的阈值t，计算两个类的概率：<br>$$\omega_0(t) &#x3D; \sum_{i&#x3D;0}^{t} p_i$$<br>$$\omega_1(t) &#x3D; \sum_{i&#x3D;t+1}^{L-1} p_i &#x3D; 1 - \omega_0(t)$$</p>
+<li><p>假设有一个非法出栈序列x，必然有某前几项和小于0，找到第一个前缀和小于0的前缀，它的前缀和也就是-1，如果将其元素进行取反，其前缀和也就变成了1，取反后，-1比1少一个，则+1变为n+1个，-1变为n-1个</p>
 </li>
-<li><p>计算两个类的均值：<br>$$\mu_0(t) &#x3D; \frac{\sum_{i&#x3D;0}^{t} i \cdot p_i}{\omega_0(t)}$$<br>$$\mu_1(t) &#x3D; \frac{\sum_{i&#x3D;t+1}^{L-1} i \cdot p_i}{\omega_1(t)}$$</p>
+<li><p>进栈出栈总数量为2n，n个进栈，n个出栈，出栈的可能序列总数量为$C_{2n}^{n}$</p>
 </li>
-<li><p>计算总体均值：<br>$$\mu_T &#x3D; \sum_{i&#x3D;0}^{L-1} i \cdot p_i$$</p>
+<li><p>每一个非法出栈序列，都对应一个对其第一个前缀和为-1的所有元素进行取反的序列，该序列有n+1个进栈，n-1个出栈，非法出栈的可能序列总数量为$C_{2n}^{n+1}$</p>
 </li>
-<li><p>计算类间方差：<br>$$\sigma_B^2(t) &#x3D; \omega_0(t) \cdot \omega_1(t) \cdot [\mu_0(t) - \mu_1(t)]^2$$</p>
+<li><p>因此，合法的出栈序列总数为$C_{2n}^{n}$-$C_{2n}^{n+1}$<br>&#x3D;$\frac{C_{2n}^{n}}{n+1}$</p>
 </li>
-<li><p>最佳阈值是使类间方差最大的阈值：<br>$$t^* &#x3D; \arg\max_{0 \leq t &lt; L} {\sigma_B^2(t)}$$</p>
+<li><p>至此，我们得到了卡特兰数的通项为$\frac{C_{2n}^{n}}{n+1}$</p>
 </li>
 </ol>
-<p>在代码中的实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">nuclei_thresh = filters.threshold_otsu(a_channel)<br>nuclei_mask = a_channel &lt; nuclei_thresh<br></code></pre></td></tr></table></figure>
-
-<h2 id="3-形态学操作"><a href="#3-形态学操作" class="headerlink" title="3. 形态学操作"></a>3. 形态学操作</h2><h3 id="小物体移除："><a href="#小物体移除：" class="headerlink" title="小物体移除："></a>小物体移除：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">nuclei_mask = morphology.remove_small_objects(nuclei_mask, min_size=<span class="hljs-number">50</span>)<br></code></pre></td></tr></table></figure>
-
-<p>使用连通组件分析，移除面积小于50像素的连通区域。连通组件分析的数学表示为：</p>
-<p>对于二值图像$I$，定义连通组件$C$为满足以下条件的像素集合：</p>
-<ul>
-<li>对于任意$p, q \in C$，存在一条路径$p &#x3D; p_0, p_1, …, p_n &#x3D; q$，使得对于所有$0 \leq i &lt; n$，$p_i$和$p_{i+1}$是相邻的，且$I(p_i) &#x3D; I(p_{i+1}) &#x3D; 1$</li>
-<li>不存在$p \in C$和$q \notin C$使得$p$和$q$相邻且$I(q) &#x3D; 1$</li>
-</ul>
-<p>然后移除所有面积小于阈值的连通组件：<br>$$I’(p) &#x3D; \begin{cases}<br>0, &amp; \text{if } p \in C \text{ and } |C| &lt; \text{min_size} \<br>I(p), &amp; \text{otherwise}<br>\end{cases}$$</p>
-<h3 id="形态学闭运算："><a href="#形态学闭运算：" class="headerlink" title="形态学闭运算："></a>形态学闭运算：</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">nuclei_mask = morphology.binary_closing(nuclei_mask, morphology.disk(<span class="hljs-number">2</span>))<br></code></pre></td></tr></table></figure>
-
-<p>闭运算是膨胀后接腐蚀的组合操作。对于二值图像$I$和结构元素$B$：</p>
-<p>膨胀操作定义为：<br>$$I \oplus B &#x3D; {z \in \mathbb{Z}^2 | (B_z \cap I) \neq \emptyset}$$<br>其中$B_z$是将$B$平移到点$z$的结果。</p>
-<p>腐蚀操作定义为：<br>$$I \ominus B &#x3D; {z \in \mathbb{Z}^2 | B_z \subseteq I}$$</p>
-<p>闭运算则定义为：<br>$$I \bullet B &#x3D; (I \oplus B) \ominus B$$</p>
-<p>在这里，结构元素$B$是半径为2的圆盘，可以表示为：<br>$$B &#x3D; {(x, y) \in \mathbb{Z}^2 | x^2 + y^2 \leq 4}$$</p>
-<h2 id="4-细胞质分割"><a href="#4-细胞质分割" class="headerlink" title="4. 细胞质分割"></a>4. 细胞质分割</h2><blockquote>
-<p>提取LAB空间的b通道，该通道对细胞质区域有较好的响应</p>
-</blockquote>
-<p>与细胞核分割类似，但使用b通道并取大于阈值的区域：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">b_channel = lab_image[:,:,<span class="hljs-number">2</span>]  <span class="hljs-comment"># 从蓝到黄的通道</span><br>cytoplasm_thresh = filters.threshold_otsu(b_channel)<br>cytoplasm_mask = b_channel &gt; cytoplasm_thresh<br></code></pre></td></tr></table></figure>
-
-<h2 id="5-细胞质掩码优化"><a href="#5-细胞质掩码优化" class="headerlink" title="5. 细胞质掩码优化"></a>5. 细胞质掩码优化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">cytoplasm_mask = morphology.remove_small_objects(cytoplasm_mask, min_size=<span class="hljs-number">100</span>)<br>cytoplasm_mask = morphology.binary_closing(cytoplasm_mask, morphology.disk(<span class="hljs-number">3</span>))<br></code></pre></td></tr></table></figure>
-
-<p>这里使用了更大的最小尺寸(100)和更大的结构元素(半径为3的圆盘)：<br>$$B_{cytoplasm} &#x3D; {(x, y) \in \mathbb{Z}^2 | x^2 + y^2 \leq 9}$$</p>
-<h2 id="6-整体细胞掩码创建"><a href="#6-整体细胞掩码创建" class="headerlink" title="6. 整体细胞掩码创建"></a>6. 整体细胞掩码创建</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">cell_mask = np.logical_or(nuclei_mask, cytoplasm_mask)<br>cell_mask = morphology.binary_closing(cell_mask, morphology.disk(<span class="hljs-number">5</span>))<br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p>将细胞核和细胞质掩码通过逻辑或运算合并<br>使用半径为5的圆形结构元素进行闭运算，确保细胞的完整性和连续性</p>
-</blockquote>
 <br>
 
-<p>$$\text{cell_mask}(x, y) &#x3D; \text{nuclei_mask}(x, y) \lor \text{cytoplasm_mask}(x, y)$$</p>
-<p>其中$\lor$表示逻辑或操作。</p>
-<p>闭运算使用半径为5的圆盘结构元素：<br>$$B_{cell} &#x3D; {(x, y) \in \mathbb{Z}^2 | x^2 + y^2 \leq 25}$$</p>
-<p>这个更大的结构元素能够填充细胞内部的空洞，并平滑细胞边界，确保细胞的完整性和连续性。<br>&#96;&#96;&#96;</p>
+<h3 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a><strong>思路2</strong></h3><ol>
+<li><p>首先，我们设 f(n)&#x3D;元素个数为n的出栈序列种数。</p>
+</li>
+<li><p>同时假定，从开始到栈第一次出到空为止，这段过程中第一个出栈的序数是k。特别地，如果栈直到整个过程结束时才空，则k&#x3D;n。</p>
+</li>
+<li><p>首次出空之前第一个出栈的序数k将1 ~ n的序列分成两个序列：其中一个是1 ~ k-1，序列个数为k-1；另外一个是k+1 ~ n，序列个数是n-k。</p>
+</li>
+<li><p>此时，我们若把k视为确定一个序数，那么根据乘法原理，f(n)的问题就等价于——序列个数为k-1的出栈序列种数乘以序列个数为n - k的出栈序列种数（一种递归的思想），即选择k这个序数的f(n)&#x3D;f(k-1)×f(n-k)。</p>
+</li>
+<li><p>而k可以选1到n，所以再根据加法原理，将k取不同值的序列种数相加，得到的总序列种数为：f ( n ) &#x3D; f ( 0 ) f ( n − 1 ) + f ( 1 ) f ( n − 2 ) + … … + f ( n − 1 ) f ( 0 ) </p>
+</li>
+<li><p>这个公式与卡特兰数的递推式一模一样，即为<br>$$<br>C_n &#x3D; C_0 C_{n-1} + C_1 C_{n-2} + \cdots + C_{n-1} C_0<br>$$</p>
+</li>
+</ol>
+<p>最后，其解为第n个卡特兰数，即$\frac{C_{2n}^{n}}{n+1}$</p>
+<br>
+
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="1-括号匹配"><a href="#1-括号匹配" class="headerlink" title="1.括号匹配"></a>1.括号匹配</h3><p>问题描述：n对括号，有多少种”括号匹配”的序列</p>
+<p>思路：把左括号看成+1，右括号看成-1，每个右括号都有与之唯一对应的左括号，那问题同样可以用进出栈问题一思路来解决，其解等于第n个卡特兰数</p>
+<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
+
+<br>
+
+<h3 id="2-二叉树"><a href="#2-二叉树" class="headerlink" title="2.二叉树"></a>2.二叉树</h3><p>问题描述：n+1个叶子结点可以构成多少种形状不同的满二叉树<br>（n个节点构成的满二叉树）<br>思路1：</p>
+<ol>
+<li>深度优先搜索这棵满二叉树，每次向左扩展记为+1，向右扩展记为-1</li>
+<li>由于每个非叶子结点都有左右两子节点，所以每次必然先向左扩展，再向右扩展，每次右扩展都和左扩展一一对应，同理可以用进出栈思路一来解决</li>
+<li>叶子数&#x3D;内部节点数+1，对于n+1个叶子节点，内部节点数为n，每生成一个内部节点，需要向左向右扩展两次，即一共需要扩展2n次</li>
+<li>可以构成$\frac{C_{2n}^{n}}{n+1}$棵形状不同的满二叉树</li>
+<li>其解等于第n个卡特兰数</li>
+</ol>
+<p>思路2：</p>
+<ol>
+<li><p>可以这么考虑，根占用1个节点，剩下n-1个节点那么剩余的n-1个结点可以有如下的分配方式，T ( 0 , n − 1 ) , T ( 1 , n − 2 ) , . . . , T ( n − 1 , 0 ) 。设T ( i , j ) 表示根的左子树含i个结点，右子树含j个结点。</p>
+</li>
+<li><p>同理用递归的思想分配左右子树的节点，每个节点都是等价的，其递推公式为：<br>$$<br>C_n &#x3D; C_0 C_{n-1} + C_1 C_{n-2} + \cdots + C_{n-1} C_0<br>$$</p>
+</li>
+</ol>
+<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
+
+<br>
+
+
+<h3 id="3-电影购票（找零钱问题）"><a href="#3-电影购票（找零钱问题）" class="headerlink" title="3.电影购票（找零钱问题）"></a>3.电影购票（找零钱问题）</h3><p>问题描述：某电影院票价为50元，售票厅处没有零钱，m个人有100元，n个人有50元，问：有多少种排队方式，可以让每个人都买到票（n&gt;m）</p>
+<p>思路：</p>
+<ol>
+<li>将持有50元的人标记为+1，持有100元的人记为-1</li>
+<li>每个持有100元的人都要和一个持有50元的人匹配</li>
+<li>同理用进出栈问题思路一解决该问题</li>
+<li>由于每个人都是独立的个体，总排队方式为$\frac{C_{2n}^{n}}{n+1}$*$m!*n!$</li>
+</ol>
+<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$*$m!*n!$</p>
+
+<br>
+
+<h3 id="4-矩阵连乘"><a href="#4-矩阵连乘" class="headerlink" title="4.矩阵连乘"></a>4.矩阵连乘</h3><p>问题描述：P&#x3D;a1×a2×a3×……×an，依据乘法结合律，不改变其顺序，只用括号表示成对的乘积，试问有几种括号化的方案？</p>
+<p>思路：</p>
+<ol>
+<li>通过括号化，将p分成两个部分，再分别对这两部分进行括号化（递归思想）</li>
+<li>括号内的括号化方案只和括号内元素数量有关，与其具体内容无关</li>
+<li>即总方案可以表示成：<br>f(n) &#x3D; f(1)*f(n-1) + f(2)*f(n-2) + f(3)*f(n-3) + f(n-1)*f(1)。f(1)*f(n-1)表示分成(a1)×(a2×a3…×an)两部分</li>
+<li>计算开始前几项，f(1) &#x3D; 1, f(2) &#x3D; 1, f(3) &#x3D; 2, f(4) &#x3D; 5。结合递归式，不难发现f(n)等于h(n-1)，其解等于第n-1个卡特兰数</li>
+</ol>
+<p class="note note-info">其解为$\frac{C_{2n-2}^{n-1}}{n}$</p>
+
+<br>
+
+<h3 id="5-凸多边形划分"><a href="#5-凸多边形划分" class="headerlink" title="5.凸多边形划分"></a>5.凸多边形划分</h3><p>问题描述：在一个n边形中，通过不相交于n边形内部的对角线，把n边形拆分为若干个三角形，问有多少种拆分方案？</p>
+<p>思路：</p>
+<ol>
+<li>以某条边AB为基准，从其余顶点选择一个顶点C，连接AC,BC，可以将凸变形分成三份,中间是一个三角形，左右两边还是凸边形</li>
+<li>设问题的解为f(n)，n表示顶点数，那么f(n)&#x3D;f(2)*f(n-1)+f(3)*f(n-2)+……+f(n-2)*f(3)+f(n-1)*f(2)。</li>
+<li>其中，f(2)*f(n-1)表示：三个相邻的顶点构成一个三角形，另外两个部分的顶点数分别为2（一条直线两个点）和n-1。</li>
+<li>其中，f(3)*f(n-2)表示：将凸多边形分为三个部分，左右两边分别是一个有3个顶点的三角形和一个有n-2个顶点的多边形。</li>
+<li>设f(2) &#x3D; 1，那么f(3) &#x3D; 1, f(4) &#x3D; 2, f(5) &#x3D; 5。结合递推式，不难发现f(n) 等于h(n-2)，其解等于第n-2个卡特兰数（可以想象成有两个顶点无法连接）</li>
+</ol>
+<p class="note note-info">其解为$\frac{C_{2n-4}^{n-2}}{n-1}$</p>
+
+<br>
+
+<h3 id="6-圆上n条线段"><a href="#6-圆上n条线段" class="headerlink" title="6.圆上n条线段"></a>6.圆上n条线段</h3><p>问题描述：在圆上选择2n个点，将这些点成对连接起来使得所得到的n条线段不相交的方法数？</p>
+<p>思路：</p>
+<ol>
+<li>以某个点为基准，记编号为0，则与其相连的点的编号一定是奇数，否则会多余出来一个点</li>
+<li>连接两点，可以将圆分成两部分，再将左右两部分分别连接两点（递归思想）</li>
+<li>设问题的解f(n)，那么f(n) &#x3D; f(0)*f(n-1) + f(1)*f(n-2) + f(2)*f(n-3) + …+f(n-2)*f(1) + f(n-1)*f(0)</li>
+<li>f(0)*f(n-1)表示编号0的点与编号1的点相连，此时位于它们右边的点的个数为0(可以连成0条线段)，而位于它们左边的点为2n-2（可以连成n-1条线段）。依次类推</li>
+<li>令f(0) &#x3D; 1, f(1) &#x3D; 1, f(2) &#x3D; 2，不难发现f(n)&#x3D;h(n)，其解等于第n个卡特兰数</li>
+</ol>
+<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
+
+<br>
+
+<h3 id="7-单调路径"><a href="#7-单调路径" class="headerlink" title="7.单调路径"></a>7.单调路径</h3><p>问题描述：一位大城市的律师在他住所以北n个街区和以东n个街区处工作，每天他走2n个街区去上班。如果他从不穿越（但可以碰到）从家到办公室的对角线，那么有多少条可能的道路？</p>
+<p>思路：</p>
+<ol>
+<li>假设E表示向东走，N表示向北走</li>
+<li>显然，任意前缀中E的个数不小于N的个数</li>
+<li>那问题可以转换成：给定一个2n长的EN序列，要求任意前缀中E的个数不小于N的个数，问有多少种序列</li>
+<li>易得，其解和进出栈问题如出一辙，其解等于第n个卡特兰数</li>
+</ol>
+<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
+
+<br>
+
+<h3 id="8-填充阶梯图形"><a href="#8-填充阶梯图形" class="headerlink" title="8.填充阶梯图形"></a>8.填充阶梯图形</h3><p>问题描述：用n个长方形填充一个高度为n的阶梯状图形的方法个数？</p>
+<p>思路：</p>
+<ol>
+<li>把高度为n-1的阶梯状图形，塞进高度为n的阶梯状图形，把高度为n的阶梯状图形分为几个部分。</li>
+<li>设问题的解f(n)，其中n表示高度为n的阶梯状图形或n个长方形。</li>
+<li>f(3)&#x3D;f(0)*f(2)+f(1)*f(1)+f(2)*f(0)&#x3D;5。<ul>
+<li>f(0)*f(2)表示：高度为3的阶梯状图形含有这两个部分，一个部分是高度为2的阶梯状图形，另外一个部分是一边为3一边为1的长方形。</li>
+<li>f(1)*f(1)表示：高度为3的阶梯状图形含有这两个部分，都是高度为1的阶梯状图形。</li>
+</ul>
+</li>
+<li>结合递推式，不难发现f(n) 等于h(n)，其解等于第n个卡特兰数</li>
+</ol>
+<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
+
+<br>
+
+<h3 id="9-排队问题"><a href="#9-排队问题" class="headerlink" title="9.排队问题"></a>9.排队问题</h3><p>问题描述：2n个高矮不同的人排成两队，每队n个人，要求第二排的第i个人比第一排的第i个人高，问有多少种排队方式</p>
+<p>思路：</p>
+<ol>
+<li>高矮是相对的，先排成一长队</li>
+<li>每一个高的都有一个矮的与之对应</li>
+<li>问题即转化成进出栈问题，高的进第二排，矮的进第一排</li>
+<li>任意前缀和不小于0，其解为第n个卡特兰数</li>
+</ol>
+<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
+
+<br>
+
+<h3 id="剩下问题："><a href="#剩下问题：" class="headerlink" title="剩下问题："></a>剩下问题：</h3><ol>
+<li>一个汽车队在狭窄的路面上行驶，不得超车，但可以进入一个死胡同去加油，然后再插队行驶，共有n辆汽车，问共有多少种不同的方式使得车队开出城去？</li>
+<li>饭后，姐姐洗碗，妹妹把姐姐洗过的碗一个一个放进碗橱摞成一摞。一共有n个不同的碗，洗前也是摞成一摞的，也许因为小妹贪玩而使碗拿进碗橱不及时，姐姐则把洗过的碗摞在旁边，问：小妹摞起的碗有多少种可能的方式？</li>
+<li>其解都等于第n个卡特兰数</li>
+</ol>
+<p class="note note-info">其解都是$\frac{C_{2n}^{n}}{n+1}$</p>
+
+<br>
+
+<p>参考博客：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Sherry_Yue/article/details/88364746?spm=1001.2014.3001.5506">Sherry_Yue</a></p>
 
                 
               </div>
@@ -441,11 +527,32 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="print-no-link">#图像处理</a>
+        <a href="/tags/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/" class="print-no-link">#卡特兰数</a>
       
     </div>
   
@@ -457,20 +564,20 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>细胞图像处理</div>
-      <div>http://kjuan.xyz/2025/04/04/图像处理/</div>
+      <div>Catalan number</div>
+      <div>http://kjuan.xyz/2025/04/05/卡特兰数/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>kjuan</div>
+          <div>马孟起</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 4, 2025</div>
+          <div>April 5, 2025</div>
         </div>
       
       
@@ -502,18 +609,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/05/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0-%E7%B2%BE%E7%AE%80%E7%89%88/" title="卡特兰数——精简版">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">卡特兰数——精简版</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/02/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E4%B8%B2/" title="数据结构-串">
-                        <span class="hidden-mobile">数据结构-串</span>
+                      <a href="/2025/04/05/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0-%E7%B2%BE%E7%AE%80%E7%89%88/" title="卡特兰数——精简版">
+                        <span class="hidden-mobile">卡特兰数——精简版</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -528,7 +629,7 @@
   
     <article id="comments" lazyload>
       
-  <div id="SOHUCS" sid='http://kjuan.xyz/2025/04/04/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/'></div>
+  <div id="SOHUCS" sid='http://kjuan.xyz/2025/04/05/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/'></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#SOHUCS', function() {
       Fluid.utils.createScript("https://changyan.sohu.com/upload/changyan.js", function() {
