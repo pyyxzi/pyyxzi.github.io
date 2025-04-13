@@ -16,27 +16,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="六脉神剑">
+  <meta name="author" content="k卷">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍卡特兰数(Catalan number)的定义与应用">
+    <meta name="description" content="介绍树的基本概念，存储结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Catalan number">
-<meta property="og:url" content="http://kjuan.xyz/2025/04/05/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/">
+<meta property="og:title" content="树与二叉树">
+<meta property="og:url" content="http://kjuan.xyz/2025/04/13/%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/">
 <meta property="og:site_name" content="鹤冲天">
-<meta property="og:description" content="介绍卡特兰数(Catalan number)的定义与应用">
+<meta property="og:description" content="介绍树的基本概念，存储结构">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-04-05T12:07:45.000Z">
-<meta property="article:modified_time" content="2025-04-05T17:05:35.007Z">
+<meta property="article:published_time" content="2025-04-13T14:50:29.000Z">
+<meta property="article:modified_time" content="2025-04-13T15:20:01.528Z">
 <meta property="article:author" content="马孟起">
-<meta property="article:tag" content="卡特兰数">
+<meta property="article:tag" content="树">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Catalan number - 鹤冲天</title>
+  <title>树与二叉树 - 鹤冲天</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -262,7 +262,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Catalan number"></span>
+            <span id="subtitle" data-typed-text="树与二叉树"></span>
           
         </div>
 
@@ -272,14 +272,14 @@
     
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
-        六脉神剑
+        k卷
       </span>
     
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-04-05 20:07" pubdate>
-          April 5, 2025 pm
+        <time datetime="2025-04-13 22:50" pubdate>
+          April 13, 2025 pm
         </time>
       </span>
     
@@ -290,7 +290,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.9k words
+          1.9k words
         
       </span>
     
@@ -301,7 +301,7 @@
         
         
         
-          25 mins
+          17 mins
         
       </span>
     
@@ -347,178 +347,286 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Catalan number</h1>
+            <h1 id="seo-header">树与二叉树</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="卡特兰数-Catalan-Number"><a href="#卡特兰数-Catalan-Number" class="headerlink" title="卡特兰数(Catalan Number)"></a>卡特兰数(Catalan Number)</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>卡特兰数(Catalan number)是组合数学中一个常出现于各种计数问题中的数列,他以中国蒙古族数学家明安图和比利时数学家欧仁·查理·卡特兰的名字命名</p>
-<h3 id="基本性质"><a href="#基本性质" class="headerlink" title="基本性质"></a>基本性质</h3><ul>
-<li><strong>前几项</strong>：1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786…</li>
-<li><strong>递推公式</strong>：<br>$$C_n &#x3D; C_0 C_{n-1} + C_1 C_{n-2} + \cdots + C_{n-1} C_0$$</li>
-<li><strong>通项公式</strong>：<br>$$C_n &#x3D; \frac{1}{n+1} \binom{2n}{n} &#x3D; \frac{(2n)!}{(n+1)!n!}$$</li>
-</ul>
-<h2 id="数学推理"><a href="#数学推理" class="headerlink" title="数学推理"></a>数学推理</h2><p>我们以最经典的栈问题举例</p>
-<p>问题描述：n个元素的进栈序列为1,2,3,4…..n，则有多少种出栈序列</p>
-<h3 id="思路1"><a href="#思路1" class="headerlink" title="思路1"></a><strong>思路1</strong></h3><ol>
-<li><p>将进栈表示为+1，出栈表示为-1，每次要出栈栈内元素要不为空，即每个-1前面必然有一个+1与之对应，出栈序列的前缀和必然大于等于0，且+1的数量等于-1的数量</p>
-</li>
-<li><p>假设有一个非法出栈序列x，必然有某前几项和小于0，找到第一个前缀和小于0的前缀，它的前缀和也就是-1，如果将其元素进行取反，其前缀和也就变成了1，取反后，-1比1少一个，则+1变为n+1个，-1变为n-1个</p>
-</li>
-<li><p>进栈出栈总数量为2n，n个进栈，n个出栈，出栈的可能序列总数量为$C_{2n}^{n}$</p>
-</li>
-<li><p>每一个非法出栈序列，都对应一个对其第一个前缀和为-1的所有元素进行取反的序列，该序列有n+1个进栈，n-1个出栈，非法出栈的可能序列总数量为$C_{2n}^{n+1}$</p>
-</li>
-<li><p>因此，合法的出栈序列总数为$C_{2n}^{n}$-$C_{2n}^{n+1}$<br>&#x3D;$\frac{C_{2n}^{n}}{n+1}$</p>
-</li>
-<li><p>至此，我们得到了卡特兰数的通项为$\frac{C_{2n}^{n}}{n+1}$</p>
-</li>
-</ol>
-<br>
-
-<h3 id="思路2"><a href="#思路2" class="headerlink" title="思路2"></a><strong>思路2</strong></h3><ol>
-<li><p>首先，我们设 f(n)&#x3D;元素个数为n的出栈序列种数。</p>
-</li>
-<li><p>同时假定，从开始到栈第一次出到空为止，这段过程中第一个出栈的序数是k。特别地，如果栈直到整个过程结束时才空，则k&#x3D;n。</p>
-</li>
-<li><p>首次出空之前第一个出栈的序数k将1 ~ n的序列分成两个序列：其中一个是1 ~ k-1，序列个数为k-1；另外一个是k+1 ~ n，序列个数是n-k。</p>
-</li>
-<li><p>此时，我们若把k视为确定一个序数，那么根据乘法原理，f(n)的问题就等价于——序列个数为k-1的出栈序列种数乘以序列个数为n - k的出栈序列种数（一种递归的思想），即选择k这个序数的f(n)&#x3D;f(k-1)×f(n-k)。</p>
-</li>
-<li><p>而k可以选1到n，所以再根据加法原理，将k取不同值的序列种数相加，得到的总序列种数为：f ( n ) &#x3D; f ( 0 ) f ( n − 1 ) + f ( 1 ) f ( n − 2 ) + … … + f ( n − 1 ) f ( 0 ) </p>
-</li>
-<li><p>这个公式与卡特兰数的递推式一模一样，即为<br>$$<br>C_n &#x3D; C_0 C_{n-1} + C_1 C_{n-2} + \cdots + C_{n-1} C_0<br>$$</p>
-</li>
-</ol>
-<p>最后，其解为第n个卡特兰数，即$\frac{C_{2n}^{n}}{n+1}$</p>
-<br>
-
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="1-括号匹配"><a href="#1-括号匹配" class="headerlink" title="1.括号匹配"></a>1.括号匹配</h3><p>问题描述：n对括号，有多少种”括号匹配”的序列</p>
-<p>思路：把左括号看成+1，右括号看成-1，每个右括号都有与之唯一对应的左括号，那问题同样可以用进出栈问题一思路来解决，其解等于第n个卡特兰数</p>
-<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
-
-<br>
-
-<h3 id="2-二叉树"><a href="#2-二叉树" class="headerlink" title="2.二叉树"></a>2.二叉树</h3><p>问题描述：n+1个叶子结点可以构成多少种形状不同的满二叉树<br>（n个节点构成的满二叉树）<br>思路1：</p>
-<ol>
-<li>深度优先搜索这棵满二叉树，每次向左扩展记为+1，向右扩展记为-1</li>
-<li>由于每个非叶子结点都有左右两子节点，所以每次必然先向左扩展，再向右扩展，每次右扩展都和左扩展一一对应，同理可以用进出栈思路一来解决</li>
-<li>叶子数&#x3D;内部节点数+1，对于n+1个叶子节点，内部节点数为n，每生成一个内部节点，需要向左向右扩展两次，即一共需要扩展2n次</li>
-<li>可以构成$\frac{C_{2n}^{n}}{n+1}$棵形状不同的满二叉树</li>
-<li>其解等于第n个卡特兰数</li>
-</ol>
-<p>思路2：</p>
-<ol>
-<li><p>可以这么考虑，根占用1个节点，剩下n-1个节点那么剩余的n-1个结点可以有如下的分配方式，T ( 0 , n − 1 ) , T ( 1 , n − 2 ) , . . . , T ( n − 1 , 0 ) 。设T ( i , j ) 表示根的左子树含i个结点，右子树含j个结点。</p>
-</li>
-<li><p>同理用递归的思想分配左右子树的节点，每个节点都是等价的，其递推公式为：<br>$$<br>C_n &#x3D; C_0 C_{n-1} + C_1 C_{n-2} + \cdots + C_{n-1} C_0<br>$$</p>
-</li>
-</ol>
-<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
-
-<br>
-
-
-<h3 id="3-电影购票（找零钱问题）"><a href="#3-电影购票（找零钱问题）" class="headerlink" title="3.电影购票（找零钱问题）"></a>3.电影购票（找零钱问题）</h3><p>问题描述：某电影院票价为50元，售票厅处没有零钱，m个人有100元，n个人有50元，问：有多少种排队方式，可以让每个人都买到票（n&gt;m）</p>
-<p>思路：</p>
-<ol>
-<li>将持有50元的人标记为+1，持有100元的人记为-1</li>
-<li>每个持有100元的人都要和一个持有50元的人匹配</li>
-<li>同理用进出栈问题思路一解决该问题</li>
-<li>由于每个人都是独立的个体，总排队方式为$\frac{C_{2n}^{n}}{n+1}$*$m!*n!$</li>
-</ol>
-<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$*$m!*n!$</p>
-
-<br>
-
-<h3 id="4-矩阵连乘"><a href="#4-矩阵连乘" class="headerlink" title="4.矩阵连乘"></a>4.矩阵连乘</h3><p>问题描述：P&#x3D;a1×a2×a3×……×an，依据乘法结合律，不改变其顺序，只用括号表示成对的乘积，试问有几种括号化的方案？</p>
-<p>思路：</p>
-<ol>
-<li>通过括号化，将p分成两个部分，再分别对这两部分进行括号化（递归思想）</li>
-<li>括号内的括号化方案只和括号内元素数量有关，与其具体内容无关</li>
-<li>即总方案可以表示成：<br>f(n) &#x3D; f(1)*f(n-1) + f(2)*f(n-2) + f(3)*f(n-3) + f(n-1)*f(1)。f(1)*f(n-1)表示分成(a1)×(a2×a3…×an)两部分</li>
-<li>计算开始前几项，f(1) &#x3D; 1, f(2) &#x3D; 1, f(3) &#x3D; 2, f(4) &#x3D; 5。结合递归式，不难发现f(n)等于h(n-1)，其解等于第n-1个卡特兰数</li>
-</ol>
-<p class="note note-info">其解为$\frac{C_{2n-2}^{n-1}}{n}$</p>
-
-<br>
-
-<h3 id="5-凸多边形划分"><a href="#5-凸多边形划分" class="headerlink" title="5.凸多边形划分"></a>5.凸多边形划分</h3><p>问题描述：在一个n边形中，通过不相交于n边形内部的对角线，把n边形拆分为若干个三角形，问有多少种拆分方案？</p>
-<p>思路：</p>
-<ol>
-<li>以某条边AB为基准，从其余顶点选择一个顶点C，连接AC,BC，可以将凸变形分成三份,中间是一个三角形，左右两边还是凸边形</li>
-<li>设问题的解为f(n)，n表示顶点数，那么f(n)&#x3D;f(2)*f(n-1)+f(3)*f(n-2)+……+f(n-2)*f(3)+f(n-1)*f(2)。</li>
-<li>其中，f(2)*f(n-1)表示：三个相邻的顶点构成一个三角形，另外两个部分的顶点数分别为2（一条直线两个点）和n-1。</li>
-<li>其中，f(3)*f(n-2)表示：将凸多边形分为三个部分，左右两边分别是一个有3个顶点的三角形和一个有n-2个顶点的多边形。</li>
-<li>设f(2) &#x3D; 1，那么f(3) &#x3D; 1, f(4) &#x3D; 2, f(5) &#x3D; 5。结合递推式，不难发现f(n) 等于h(n-2)，其解等于第n-2个卡特兰数（可以想象成有两个顶点无法连接）</li>
-</ol>
-<p class="note note-info">其解为$\frac{C_{2n-4}^{n-2}}{n-1}$</p>
-
-<br>
-
-<h3 id="6-圆上n条线段"><a href="#6-圆上n条线段" class="headerlink" title="6.圆上n条线段"></a>6.圆上n条线段</h3><p>问题描述：在圆上选择2n个点，将这些点成对连接起来使得所得到的n条线段不相交的方法数？</p>
-<p>思路：</p>
-<ol>
-<li>以某个点为基准，记编号为0，则与其相连的点的编号一定是奇数，否则会多余出来一个点</li>
-<li>连接两点，可以将圆分成两部分，再将左右两部分分别连接两点（递归思想）</li>
-<li>设问题的解f(n)，那么f(n) &#x3D; f(0)*f(n-1) + f(1)*f(n-2) + f(2)*f(n-3) + …+f(n-2)*f(1) + f(n-1)*f(0)</li>
-<li>f(0)*f(n-1)表示编号0的点与编号1的点相连，此时位于它们右边的点的个数为0(可以连成0条线段)，而位于它们左边的点为2n-2（可以连成n-1条线段）。依次类推</li>
-<li>令f(0) &#x3D; 1, f(1) &#x3D; 1, f(2) &#x3D; 2，不难发现f(n)&#x3D;h(n)，其解等于第n个卡特兰数</li>
-</ol>
-<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
-
-<br>
-
-<h3 id="7-单调路径"><a href="#7-单调路径" class="headerlink" title="7.单调路径"></a>7.单调路径</h3><p>问题描述：一位大城市的律师在他住所以北n个街区和以东n个街区处工作，每天他走2n个街区去上班。如果他从不穿越（但可以碰到）从家到办公室的对角线，那么有多少条可能的道路？</p>
-<p>思路：</p>
-<ol>
-<li>假设E表示向东走，N表示向北走</li>
-<li>显然，任意前缀中E的个数不小于N的个数</li>
-<li>那问题可以转换成：给定一个2n长的EN序列，要求任意前缀中E的个数不小于N的个数，问有多少种序列</li>
-<li>易得，其解和进出栈问题如出一辙，其解等于第n个卡特兰数</li>
-</ol>
-<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
-
-<br>
-
-<h3 id="8-填充阶梯图形"><a href="#8-填充阶梯图形" class="headerlink" title="8.填充阶梯图形"></a>8.填充阶梯图形</h3><p>问题描述：用n个长方形填充一个高度为n的阶梯状图形的方法个数？</p>
-<p>思路：</p>
-<ol>
-<li>把高度为n-1的阶梯状图形，塞进高度为n的阶梯状图形，把高度为n的阶梯状图形分为几个部分。</li>
-<li>设问题的解f(n)，其中n表示高度为n的阶梯状图形或n个长方形。</li>
-<li>f(3)&#x3D;f(0)*f(2)+f(1)*f(1)+f(2)*f(0)&#x3D;5。<ul>
-<li>f(0)*f(2)表示：高度为3的阶梯状图形含有这两个部分，一个部分是高度为2的阶梯状图形，另外一个部分是一边为3一边为1的长方形。</li>
-<li>f(1)*f(1)表示：高度为3的阶梯状图形含有这两个部分，都是高度为1的阶梯状图形。</li>
+                <h3 id="树的定义与基本术语总结"><a href="#树的定义与基本术语总结" class="headerlink" title="树的定义与基本术语总结"></a>树的定义与基本术语总结</h3><hr>
+<h4 id="一、树的定义"><a href="#一、树的定义" class="headerlink" title="一、树的定义"></a><strong>一、树的定义</strong></h4><ol>
+<li><strong>树</strong>是 $n$（$n \geq 0$）个结点的有限集合：<ul>
+<li>当 $n &#x3D; 0$ 时，称为<strong>空树</strong>。</li>
+<li>非空树满足：<ul>
+<li>有且仅有一个<strong>根结点</strong>。</li>
+<li>其余结点分为 $m$（$m \geq 0$）个<strong>互不相交的子树</strong>，每个子树本身也是一棵树。</li>
 </ul>
 </li>
-<li>结合递推式，不难发现f(n) 等于h(n)，其解等于第n个卡特兰数</li>
+</ul>
+</li>
 </ol>
-<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
-
-<br>
-
-<h3 id="9-排队问题"><a href="#9-排队问题" class="headerlink" title="9.排队问题"></a>9.排队问题</h3><p>问题描述：2n个高矮不同的人排成两队，每队n个人，要求第二排的第i个人比第一排的第i个人高，问有多少种排队方式</p>
-<p>思路：</p>
-<ol>
-<li>高矮是相对的，先排成一长队</li>
-<li>每一个高的都有一个矮的与之对应</li>
-<li>问题即转化成进出栈问题，高的进第二排，矮的进第一排</li>
-<li>任意前缀和不小于0，其解为第n个卡特兰数</li>
+<hr>
+<h4 id="二、基本术语"><a href="#二、基本术语" class="headerlink" title="二、基本术语"></a><strong>二、基本术语</strong></h4><ol>
+<li><p><strong>结点与关系</strong>：</p>
+<ul>
+<li><strong>根结点</strong>：没有父结点的结点。</li>
+<li><strong>叶子结点</strong>（终端结点）：没有子结点的结点。</li>
+<li><strong>分支结点</strong>（非终端结点）：至少有一个子结点的结点。</li>
+<li><strong>父结点</strong>（双亲结点）与<strong>子结点</strong>（孩子结点）：直接相连的上下层结点。</li>
+<li><strong>兄弟结点</strong>：具有相同父结点的结点。</li>
+<li><strong>堂兄弟结点</strong>：父结点不同但处于同一层的结点。</li>
+<li><strong>祖先结点</strong>与<strong>子孙结点</strong>：从根到某结点的路径上的所有前驱结点称为祖先，所有后继结点称为子孙。</li>
+</ul>
+</li>
+<li><p><strong>路径与属性</strong>：</p>
+<ul>
+<li><strong>路径</strong>：从根到某结点的唯一通路。</li>
+<li><strong>路径长度</strong>：路径中边的数量。</li>
+<li><strong>层次（深度）</strong>：根结点为第 1 层，向下逐层递增。</li>
+<li><strong>结点的高度</strong>：从该结点到最远叶子结点的路径长度。</li>
+<li><strong>树的高度&#x2F;深度</strong>：树中结点的最大层次数。</li>
+</ul>
+</li>
+<li><p><strong>度与类型</strong>：</p>
+<ul>
+<li><strong>结点的度</strong>：结点拥有的子结点数。</li>
+<li><strong>树的度</strong>：树中所有结点度的最大值。</li>
+<li><strong>有序树</strong>：子树顺序不可交换的树（如二叉树）。</li>
+<li><strong>无序树</strong>：子树顺序可交换的树。</li>
+<li><strong>森林</strong>：由 $m$（$m \geq 0$）棵互不相交的树组成的集合。</li>
+</ul>
+</li>
 </ol>
-<p class="note note-info">其解为$\frac{C_{2n}^{n}}{n+1}$</p>
-
-<br>
-
-<h3 id="剩下问题："><a href="#剩下问题：" class="headerlink" title="剩下问题："></a>剩下问题：</h3><ol>
-<li>一个汽车队在狭窄的路面上行驶，不得超车，但可以进入一个死胡同去加油，然后再插队行驶，共有n辆汽车，问共有多少种不同的方式使得车队开出城去？</li>
-<li>饭后，姐姐洗碗，妹妹把姐姐洗过的碗一个一个放进碗橱摞成一摞。一共有n个不同的碗，洗前也是摞成一摞的，也许因为小妹贪玩而使碗拿进碗橱不及时，姐姐则把洗过的碗摞在旁边，问：小妹摞起的碗有多少种可能的方式？</li>
-<li>其解都等于第n个卡特兰数</li>
+<hr>
+<h4 id="三、常考性质"><a href="#三、常考性质" class="headerlink" title="三、常考性质"></a><strong>三、常考性质</strong></h4><ol>
+<li><p><strong>结点数与度数关系</strong>：</p>
+<ul>
+<li>树中结点总数 &#x3D; 所有结点的度数之和 + 1<br>（根结点无父结点，每条边对应一个度）</li>
+</ul>
+</li>
+<li><p><strong>度为 $m$ 的树 vs. $m$ 叉树</strong>：</p>
+<table>
+<thead>
+<tr>
+<th><strong>性质</strong></th>
+<th><strong>度为 $m$ 的树</strong></th>
+<th><strong>$m$ 叉树</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>结点度的最大值</td>
+<td>至少有一个结点度为 $m$</td>
+<td>所有结点度 $\leq m$</td>
+</tr>
+<tr>
+<td>是否可为空树</td>
+<td>非空（至少 $m+1$ 个结点）</td>
+<td>可为空树</td>
+</tr>
+<tr>
+<td>结点数下限</td>
+<td>$m+1$（如度为 2 的树至少 3 结点）</td>
+<td>0（空树）</td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>层与结点数关系</strong>：</p>
+<ul>
+<li><strong>度为 $m$ 的树</strong>：第 $i$ 层最多有 $m^{i-1}$ 个结点。</li>
+<li><strong>$m$ 叉树</strong>：第 $i$ 层最多有 $m^{i-1}$ 个结点。</li>
+</ul>
+</li>
+<li><p><strong>高度与结点数极值</strong>：</p>
+<ul>
+<li><strong>高度为 $h$ 的 $m$ 叉树</strong>：<ul>
+<li>最多结点数：$\frac{m^h - 1}{m - 1}$（满 $m$ 叉树，等比数列求和公式）。</li>
+<li>最少结点数：$h$（每层仅 1 个结点）。</li>
+</ul>
+</li>
+<li><strong>高度为 $h$、度为 $m$ 的树</strong>：至少 $h + m - 1$ 个结点。</li>
+</ul>
+</li>
+<li><p><strong>最小高度公式</strong>：</p>
+<ul>
+<li>含 $n$ 个结点的 $m$ 叉树的最小高度：<br>$h_{\text{min}} &#x3D; \lceil \log_m \left( n(m - 1) + 1 \right) \rceil$</li>
+<li><strong>推导</strong>：前 $h-1$ 层最多有 $\frac{m^{h-1} - 1}{m - 1}$ 个结点，需满足 $n \leq \frac{m^h - 1}{m - 1}$。</li>
+</ul>
+</li>
 </ol>
-<p class="note note-info">其解都是$\frac{C_{2n}^{n}}{n+1}$</p>
-
-<br>
-
-<p>参考博客：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/Sherry_Yue/article/details/88364746?spm=1001.2014.3001.5506">Sherry_Yue</a></p>
+<hr>
+<h4 id="四、常见考点总结"><a href="#四、常见考点总结" class="headerlink" title="四、常见考点总结"></a><strong>四、常见考点总结</strong></h4><ol>
+<li><strong>结点数与度数关系</strong>：$\text{结点总数} &#x3D; \sum (\text{所有结点的度}) + 1$。</li>
+<li><strong>树的度与层结点数</strong>：度为 $m$ 的树第 $i$ 层最多有 $m^{i-1}$ 个结点。</li>
+<li><strong>高度与结点数极值</strong>：<ul>
+<li>最大结点数：利用等比数列求和公式 $\frac{m^h - 1}{m - 1}$。</li>
+<li>最小结点数：每层仅 1 个结点，总数为 $h$。</li>
+</ul>
+</li>
+<li><strong>最小高度公式</strong>：通过完全填满时的层数推导，使用对数函数计算。</li>
+</ol>
+<hr>
+<h3 id="二叉树基本概念与性质"><a href="#二叉树基本概念与性质" class="headerlink" title="二叉树基本概念与性质"></a>二叉树基本概念与性质</h3><hr>
+<h4 id="一、基本定义"><a href="#一、基本定义" class="headerlink" title="一、基本定义"></a><strong>一、基本定义</strong></h4><ol>
+<li><strong>二叉树</strong>是 $n(n \geq 0)$ 个结点的有限集合：<ul>
+<li>空二叉树：当 $n&#x3D;0$ 时。</li>
+<li>非空二叉树：<ul>
+<li>由一个根结点和两个互不相交的左子树、右子树组成。</li>
+<li>左子树和右子树分别也是二叉树。</li>
+</ul>
+</li>
+<li><strong>特点</strong>：<ul>
+<li>每个结点最多有两棵子树（左子树和右子树）。</li>
+<li>左右子树严格有序，不可颠倒（有序树）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="二、特殊二叉树类型"><a href="#二、特殊二叉树类型" class="headerlink" title="二、特殊二叉树类型"></a><strong>二、特殊二叉树类型</strong></h4><ol>
+<li><p><strong>满二叉树</strong>：</p>
+<ul>
+<li><strong>定义</strong>：高度为 $h$ 且含有 $2^h -1$ 个结点的二叉树。</li>
+<li><strong>特点</strong>：<ul>
+<li>只有最后一层有叶子结点。</li>
+<li>不存在度为1的结点。</li>
+<li>按层序从1开始编号，结点$i$的左孩子为$2i$，右孩子为$2i+1$，父结点为$\lfloor i&#x2F;2 \rfloor$。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>完全二叉树</strong>：</p>
+<ul>
+<li><strong>定义</strong>：当且仅当其每个结点都与高度为 $h$ 的满二叉树中编号为 $1 \sim n$ 的结点一一对应。</li>
+<li><strong>特点</strong>：<ul>
+<li>最后两层可能有叶子结点。</li>
+<li>最多只有一个度为1的结点。</li>
+<li>分支结点编号满足 $i \leq \lfloor n&#x2F;2 \rfloor$，叶子结点编号满足 $i &gt; \lfloor n&#x2F;2 \rfloor$。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>二叉排序树（BST）</strong>：</p>
+<ul>
+<li><strong>定义</strong>：<ul>
+<li>空树或满足：左子树所有结点关键字 &lt; 根结点关键字 &lt; 右子树所有结点关键字。</li>
+<li>左右子树也是二叉排序树。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>平衡二叉树（AVL树）</strong>：</p>
+<ul>
+<li><strong>定义</strong>：任一结点的左子树和右子树深度之差不超过1。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="三、二叉树性质"><a href="#三、二叉树性质" class="headerlink" title="三、二叉树性质"></a><strong>三、二叉树性质</strong></h4><ol>
+<li><p><strong>结点数与度数关系</strong>：</p>
+<ul>
+<li>设度为0、1、2的结点数分别为 $n_0, n_1, n_2$，则：<br>$<br>n_0 &#x3D; n_2 + 1<br>$</li>
+<li><strong>推导</strong>：总结点数 $n &#x3D; n_0 + n_1 + n_2$，总边数 $n -1 &#x3D; n_1 + 2n_2$，联立得 $n_0 &#x3D; n_2 +1$。</li>
+</ul>
+</li>
+<li><p><strong>层结点数上限</strong>：</p>
+<ul>
+<li>第 $i$ 层最多有 $2^{i-1}$ 个结点（二叉树）。</li>
+<li>第 $i$ 层最多有 $m^{i-1}$ 个结点（$m$ 叉树）。</li>
+</ul>
+</li>
+<li><p><strong>高度与结点数极值</strong>：</p>
+<ul>
+<li>高度为 $h$ 的二叉树最多有 $2^h -1$ 个结点（满二叉树）。</li>
+<li>高度为 $h$ 的 $m$ 叉树最多有 $\frac{m^h -1}{m -1}$ 个结点。</li>
+</ul>
+</li>
+<li><p><strong>完全二叉树高度公式</strong>：</p>
+<ul>
+<li>结点数为 $n$ 的完全二叉树最小高度：<br>$<br>h &#x3D; \lceil \log_2 (n+1) \rceil \quad \text{或} \quad h &#x3D; \lfloor \log_2 n \rfloor +1<br>$</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="四、完全二叉树性质应用"><a href="#四、完全二叉树性质应用" class="headerlink" title="四、完全二叉树性质应用"></a><strong>四、完全二叉树性质应用</strong></h4><ol>
+<li><p><strong>结点数奇偶性分析</strong>：</p>
+<ul>
+<li>若完全二叉树有 $2k$ 个结点（偶数）：<ul>
+<li>$n_1 &#x3D;1$, $n_0 &#x3D;k$, $n_2 &#x3D;k-1$。</li>
+</ul>
+</li>
+<li>若完全二叉树有 $2k-1$ 个结点（奇数）：<ul>
+<li>$n_1 &#x3D;0$, $n_0 &#x3D;k$, $n_2 &#x3D;k-1$。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>关键操作判断</strong>：</p>
+<ul>
+<li>判断结点 $i$ 是否有左孩子：$2i \leq n$。</li>
+<li>判断结点 $i$ 是否有右孩子：$2i+1 \leq n$。</li>
+<li>判断结点 $i$ 是否为叶子结点：$i &gt; \lfloor n&#x2F;2 \rfloor$。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="五、存储结构"><a href="#五、存储结构" class="headerlink" title="五、存储结构"></a><strong>五、存储结构</strong></h4><ol>
+<li><p><strong>顺序存储</strong>：</p>
+<ul>
+<li><strong>适用场景</strong>：完全二叉树。</li>
+<li><strong>数组索引规则</strong>：根结点从1开始，结点 $i$ 的左孩子为 $2i$，右孩子为 $2i+1$，父结点为 $\lfloor i&#x2F;2 \rfloor$。</li>
+<li><strong>缺点</strong>：非完全二叉树存储时存在空间浪费。</li>
+</ul>
+</li>
+<li><p><strong>链式存储</strong>：</p>
+<ul>
+<li><strong>二叉链表</strong>：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiTNode</span> &#123;</span><br>    ElemType data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiTNode</span> *<span class="hljs-title">lchild</span>, *<span class="hljs-title">rchild</span>;</span><br>&#125; BiTNode, *BiTree;<br></code></pre></td></tr></table></figure>
+<ul>
+<li><strong>空链域数</strong>：$n$ 个结点的二叉链表有 $n+1$ 个空指针域。</li>
+</ul>
+</li>
+<li><strong>三叉链表</strong>（含父结点指针）：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiTNode</span> &#123;</span><br>    ElemType data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">BiTNode</span> *<span class="hljs-title">lchild</span>, *<span class="hljs-title">rchild</span>, *<span class="hljs-title">parent</span>;</span><br>&#125; BiTNode, *BiTree;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="六、常考题型与解题技巧"><a href="#六、常考题型与解题技巧" class="headerlink" title="六、常考题型与解题技巧"></a><strong>六、常考题型与解题技巧</strong></h4><ol>
+<li><p><strong>题型1：计算叶子结点数</strong><br><strong>步骤</strong>：</p>
+<ul>
+<li>利用 $n_0 &#x3D; n_2 +1$ 结合总结点数联立求解。</li>
+<li><strong>示例</strong>：已知 $n_1&#x3D;5$, $n_2&#x3D;3$，则 $n_0&#x3D;4$，总结点数 $n&#x3D;5+3+4&#x3D;12$。</li>
+</ul>
+</li>
+<li><p><strong>题型2：完全二叉树高度计算</strong><br><strong>公式选择</strong>：</p>
+<ul>
+<li>当题目强调“最小高度”时使用 $\lceil \log_2 (n+1) \rceil$。</li>
+<li>当题目给出结点数范围时使用 $\lfloor \log_2 n \rfloor +1$。</li>
+</ul>
+</li>
+<li><p><strong>题型3：判断完全二叉树合法性</strong><br><strong>关键点</strong>：</p>
+<ul>
+<li>检查结点编号是否连续填充，无中间空缺。</li>
+<li>验证最后一个结点的父结点是否存在。</li>
+</ul>
+</li>
+<li><p><strong>题目1</strong>：已知完全二叉树有1000个结点，求叶子结点数。<br><strong>解析</strong>：  </p>
+<ul>
+<li>根据完全二叉树性质，当 $n&#x3D;1000$（偶数）时，$n_1&#x3D;1$，$n_0&#x3D;500$，$n_2&#x3D;499$。  </li>
+<li><strong>答案</strong>：500个叶子结点。</li>
+</ul>
+</li>
+<li><p><strong>题目2</strong>：高度为5的满二叉树，求第3层结点数。<br><strong>解析</strong>：  </p>
+<ul>
+<li>第3层最多有 $2^{3-1}&#x3D;4$ 个结点。  </li>
+<li><strong>答案</strong>：4个结点。</li>
+</ul>
+</li>
+<li><p><strong>题目3</strong>：判断结点数n&#x3D;15的完全二叉树高度。<br><strong>解析</strong>：  </p>
+<ul>
+<li>使用公式 $h &#x3D; \lceil \log_2 (15+1) \rceil &#x3D; \lceil 4 \rceil &#x3D;4$。  </li>
+<li><strong>答案</strong>：高度为4。</li>
+</ul>
+</li>
+</ol>
 
                 
               </div>
@@ -540,6 +648,13 @@
   <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
   
   
+    <span>></span>
+    
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="category-chain-item">学习笔记</a>
+  
+  
+
+  
 
       </span>
     
@@ -552,7 +667,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/" class="print-no-link">#卡特兰数</a>
+        <a href="/tags/%E6%A0%91/" class="print-no-link">#树</a>
       
     </div>
   
@@ -564,20 +679,20 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Catalan number</div>
-      <div>http://kjuan.xyz/2025/04/05/卡特兰数/</div>
+      <div>树与二叉树</div>
+      <div>http://kjuan.xyz/2025/04/13/树与二叉树/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>Author</div>
-          <div>六脉神剑</div>
+          <div>k卷</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 5, 2025</div>
+          <div>April 13, 2025</div>
         </div>
       
       
@@ -609,18 +724,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/04/06/%E6%98%9F%E9%99%85%E6%88%98%E7%94%B2%E6%94%BB%E7%95%A5/" title="warframe攻略">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">warframe攻略</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/04/05/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0-%E7%B2%BE%E7%AE%80%E7%89%88/" title="卡特兰数——精简版">
-                        <span class="hidden-mobile">卡特兰数——精简版</span>
+                      <a href="/2025/04/06/%E6%98%9F%E9%99%85%E6%88%98%E7%94%B2%E6%94%BB%E7%95%A5/" title="warframe攻略">
+                        <span class="hidden-mobile">warframe攻略</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -635,7 +744,7 @@
   
     <article id="comments" lazyload>
       
-  <div id="SOHUCS" sid='http://kjuan.xyz/2025/04/05/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/'></div>
+  <div id="SOHUCS" sid='http://kjuan.xyz/2025/04/13/%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91/'></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#SOHUCS', function() {
       Fluid.utils.createScript("https://changyan.sohu.com/upload/changyan.js", function() {
